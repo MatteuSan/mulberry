@@ -1,0 +1,24 @@
+@use '@matteusan/sentro' with ($prefix: 'mu', $context: 'theme');
+
+// @include sentro.reset('cssremedy');
+
+:root {
+  @include sentro.token-config(
+    $primary: (
+      400: ''
+    )
+  );
+}
+
+*,
+:before,
+:after {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+  color: inherit;
+}
+
+html {
+  font-size: 100%;
+}
