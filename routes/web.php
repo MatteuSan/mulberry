@@ -14,6 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    if (!auth()->getSession()->isStarted()) return view('auth.login');
-    return view('welcome');
+    return view('auth.login');
 });

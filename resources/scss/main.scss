@@ -1,12 +1,33 @@
 @use '@matteusan/sentro' with ($prefix: 'mu', $context: 'theme');
 
-// @include sentro.reset('cssremedy');
+@use 'font';
+
+@include font.load();
 
 :root {
+  font-family: 'Nohemi', sans-serif;
   @include sentro.token-config(
     $primary: (
-      400: ''
-    )
+      200: #949494,
+      300: #707070,
+      400: #505050,
+      600: #2d2d2d,
+      ink: #fff,
+    ),
+    $accent: (
+      200: #c7575d,
+      300: #cb3138,
+      400: #9d0a10,
+      600: #4f0406,
+      ink: #fdbc2d
+    ),
+    $surface: (
+      200: #fff,
+      300: #e5e5e5,
+      400: #c4c4c4,
+      600: #939393,
+      ink: #000
+    ),
   );
 }
 
@@ -21,4 +42,27 @@
 
 html {
   font-size: 100%;
+}
+
+body {
+  background: sentro.token-get('primary-600');
+  color: sentro.token-get('primary-ink');
+}
+
+.content-wrap.is-auth {
+  width: calc(100% - 30px);
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+@include sentro.selector-create('.surface') {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  background: sentro.token-get('surface-200');
+  color: sentro.token-get('surface-ink');
 }

@@ -3,5 +3,7 @@
 @section('title', 'Login')
 
 @section('content')
-    Login page
+    <header>
+      <h2>Login</h2>
+    </header>
 @endsection
