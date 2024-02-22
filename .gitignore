@@ -18,5 +18,5 @@ yarn-error.log
 /.idea
 /.vscode
 /mapua.db
-/.yarnrr
+/.yarn
 .rr.yaml
