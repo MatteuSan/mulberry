@@ -1,13 +1,9 @@
 @use '@matteusan/sentro' with ($prefix: 'mu', $context: 'theme');
 
-@use 'font';
-
 // Components
 @use 'components/mu-alert';
 @use 'components/mu-appbar';
 @use 'components/mu-header';
-
-@include font.load();
 
 @include sentro.breakpoint-config((
   'small': sentro.px-to-rem(320px),
