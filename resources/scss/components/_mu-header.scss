@@ -1,0 +1,27 @@
+@use '@matteusan/sentro';
+
+@mixin render() {
+  @include sentro.selector-create('.header') {
+    width: 100%;
+    background: sentro.token-get('surface-200');
+    color: sentro.token-get('surface-ink');
+
+    @include sentro.selector-create('.header__wrapper') {
+      width: 100%;
+      max-width: 1077px;
+      margin: 0 auto;
+      display: flex;
+      padding: sentro.px-to-rem(15px);
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: center;
+
+      @include sentro.selector-create('.logo') {
+        display: block;
+        width: 100%;
+        height: 36px;
+        background-size: contain;
+      }
+    }
+  }
+}

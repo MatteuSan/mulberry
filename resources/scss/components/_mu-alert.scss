@@ -1,0 +1,42 @@
+@use '@matteusan/sentro';
+
+@mixin render() {
+  @include sentro.selector-create('.alert') {
+    width: 100%;
+    padding: 10px 15px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    background: sentro.key-create('alert-fill', sentro.token-get('warning-200'));
+    color: sentro.key-create('alert-ink', sentro.token-get('warning-600'));
+    border: 1px solid sentro.key-create('alert-border', sentro.token-get('warning-300'));
+    border-radius: 0.3rem;
+    transition: all var(--transition-time) ease-in-out;
+
+    @include sentro.selector-create('.alert__label') {
+      @include sentro.line-clamp(2);
+    }
+
+    &.is-high {
+      @include sentro.key-bind('alert-fill', sentro.token-get('error-200'));
+      @include sentro.key-bind('alert-ink', sentro.token-get('error-600'));
+      @include sentro.key-bind('alert-border', sentro.token-get('error-300'));
+    }
+
+    @include sentro.selector-create('.alert__action') {
+      padding: 0.3rem;
+      background: transparent;
+      border: none;
+      border-radius: 0.3rem;
+      font-weight: bold;
+      -webkit-appearance: caret;
+      cursor: pointer;
+      transition: all var(--transition-time) ease-in-out;
+
+      &:hover {
+        background: sentro.token-get('warning-300');
+      }
+    }
+  }
+}

@@ -2,10 +2,21 @@
 
 @use 'font';
 
+// Components
+@use 'components/mu-alert';
+@use 'components/mu-appbar';
+@use 'components/mu-header';
+
 @include font.load();
 
+@include sentro.breakpoint-config((
+  'small': sentro.px-to-rem(320px),
+  'medium': sentro.px-to-rem(640px),
+  'large': sentro.px-to-rem(890px),
+  'xlarge': sentro.px-to-rem(1077px),
+));
+
 :root {
-  font-family: 'Nohemi', sans-serif;
   @include sentro.token-config(
     $primary: (
       200: #949494,
@@ -28,7 +39,41 @@
       600: #939393,
       ink: #000
     ),
+    $error: (
+      200: #ff8d8d,
+      300: #ec4f4f,
+      400: #c41b1b,
+      600: #8d0c0c,
+      ink: #fff,
+    ),
+    $warning: (
+      200: #ffc46a,
+      300: #fdaa31,
+      400: #ff9900,
+      600: #c97900,
+      ink: #000,
+    ),
+    $t-size: (
+      'xs': clamp(#{sentro.px-to-rem(10px)}, 2vw, #{sentro.px-to-rem(12px)}),
+      'sm': clamp(#{sentro.px-to-rem(14px)}, 4vw, #{sentro.px-to-rem(16px)}),
+      'md': clamp(#{sentro.px-to-rem(17px)}, 5vw, #{sentro.px-to-rem(21px)}),
+      'lg': clamp(#{sentro.px-to-rem(19px)}, 6vw, #{sentro.px-to-rem(25px)}),
+      'xl': clamp(#{sentro.px-to-rem(24px)}, 8vw, #{sentro.px-to-rem(30px)}),
+      '2xl': clamp(#{sentro.px-to-rem(26px)}, 8vw, #{sentro.px-to-rem(36px)}),
+      '3xl': clamp(#{sentro.px-to-rem(32px)}, 10vw, #{sentro.px-to-rem(42px)}),
+      '4xl': clamp(#{sentro.px-to-rem(39px)}, 10vw, #{sentro.px-to-rem(49px)}),
+      '5xl': clamp(#{sentro.px-to-rem(47px)}, 12vw, #{sentro.px-to-rem(57px)}),
+      '6xl': clamp(#{sentro.px-to-rem(56px)}, 14vw, #{sentro.px-to-rem(66px)}),
+    ),
+    $t-lead: (
+      'broad': 2,
+      'normal': 1.5,
+      'condensed': 1.25,
+    ),
   );
+  --transition-time: 0.175s;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  font-family: 'Nohemi', sans-serif;
 }
 
 *,
@@ -42,27 +87,80 @@
 
 html {
   font-size: 100%;
+  box-sizing: border-box;
 }
 
 body {
   background: sentro.token-get('primary-600');
   color: sentro.token-get('primary-ink');
+  font-size: sentro.token-get('t-size-sm');
 }
 
-.content-wrap.is-auth {
+.content-wrap {
   width: calc(100% - 30px);
-  max-width: 760px;
+  max-width: sentro.key-create('content-wrap-max-w', 1077px);
   margin: 0 auto;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
+  padding: 25px 0;
+  display: sentro.key-create('content-wrap-display', grid);
+
+  @include sentro.breakpoint-create('large') {
+    padding: 45px 0;
+  }
+
+  &.is-auth {
+    @include sentro.key-bind('content-wrap-max-w', 770px);
+    @include sentro.key-bind('content-wrap-display', flex);
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
-@include sentro.selector-create('.surface') {
-  width: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  background: sentro.token-get('surface-200');
-  color: sentro.token-get('surface-ink');
+.supertitle {
+  font-weight: 900;
+  font-size: sentro.token-get('t-size-2xl');
+  line-height: sentro.token-get('t-lead-broad');
+}
+
+.title {
+  font-weight: 700;
+  font-size: sentro.token-get('t-size-xl');
+  line-height: sentro.token-get('t-lead-normal');
+}
+
+@include mu-alert.render();
+@include mu-appbar.render();
+@include mu-header.render();
+
+@include sentro.selector-create('.card') {
+  padding: 0.7rem;
+  background: sentro.token-get('primary-300');
+  border-radius: 0.5rem;
+  box-shadow: 0 0.3rem 0.5rem var(--shadow-color);
+
+  @include sentro.selector-create('.card__title') {
+    font-size: sentro.token-get('t-size-lg');
+    font-weight: 700;
+    line-height: sentro.token-get('t-lead-normal');
+  }
+
+  @include sentro.selector-create('.card__preview-text') {
+    font-size: sentro.token-get('t-size-sm');
+    line-height: sentro.token-get('t-lead-condensed');
+    @include sentro.line-clamp(2);
+  }
+
+  @include sentro.selector-create('.card__actions') {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0 0 0;
+
+    @include sentro.selector-create('.card__action') {
+      background: transparent;
+      border: none;
+    }
+  }
 }

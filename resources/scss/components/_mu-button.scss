@@ -1,0 +1,54 @@
+@use '@matteusan/sentro';
+
+@mixin base() {
+  @include sentro.selector-create('.button') {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    user-select: none;
+    overflow: visible;
+    vertical-align: middle;
+
+    cursor: pointer;
+    outline: sentro.key-create('button-outline', none);
+
+    -webkit-appearance: caret;
+
+    @content;
+
+    @include sentro.selector-create('.button__icon') {
+      position: relative;
+      color: sentro.key-create('button-icon-ink', inherit);
+      font-size: sentro.key-create('button-icon-size', sentro.token-get('t-size-md'));
+      /* @fallback */
+      width: sentro.key-create('button-icon-size', sentro.token-get('t-size-md'));
+      max-width: max-content;
+      height: sentro.key-create('button-icon-size', sentro.token-get('t-size-md'));
+
+      > * {
+        position: relative;
+        color: sentro.key-create('button-icon-ink', inherit);
+        font-size: sentro.key-create('button-icon-size', sentro.token-get('t-size-md'));
+        /* @fallback */
+        width: sentro.key-create('button-icon-size', sentro.token-get('t-size-md'));
+        max-width: max-content;
+        height: sentro.key-create('button-icon-size', sentro.token-get('t-size-md'));
+      }
+    }
+
+    @include sentro.selector-create('.button__label') {
+      font-family: sentro.key-create('button-label-family', inherit);
+      font-size: sentro.key-create('button-label-size', inherit);
+      font-weight: sentro.key-create('button-label-weight', inherit);
+      line-height: sentro.key-create('button-label-lead', inherit);
+      color: sentro.key-create('button-label-ink', inherit);
+    }
+  }
+}
+
+@mixin render() {
+
+}
