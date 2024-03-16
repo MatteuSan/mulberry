@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('staff', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('number')->unique();
-            $table->integer('year');
-            $table->foreignId('program_id')->constrained();
             $table->foreignId('role_id')->constrained();
             $table->foreignId('user_id')->constrained();
-            $table->json('load')->nullable(); // json of courses loaded for the term
-            $table->foreignId('grade_id')->constrained();
+            $table->json('courses')->nullable();
+            $table->foreignId('department_id')->constrained();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('staff');
     }
 };

@@ -35,6 +35,11 @@
           @include sentro.key-bind('appbar-item-icon-fill', sentro.token-get('accent-400'));
           @include sentro.key-bind('appbar-item-icon-ink', sentro.token-get('accent-ink'));
           @include sentro.key-bind('appbar-item-label-ink', sentro.token-get('accent-400'));
+          @include sentro.key-bind('appbar-item-gap', sentro.px-to-rem(5px));
+
+          // @include sentro.breakpoint-create('medium') {
+          //   @include sentro.key-bind('appbar-item-gap', sentro.px-to-rem(5px));
+          // }
 
           &:hover {
             color: sentro.token-get('accent-600');
@@ -53,11 +58,12 @@
           justify-content: center;
           align-items: center;
           text-decoration: none;
-          gap: sentro.px-to-rem(5px);
+          gap: sentro.key-create('appbar-item-gap', sentro.px-to-rem(5px));
 
           @include sentro.breakpoint-create('medium') {
             max-width: max-content;
             @include sentro.key-bind('appbar-item-flow', row);
+            // @include sentro.key-bind('appbar-item-gap', 0);
           }
         }
 
@@ -71,11 +77,11 @@
           padding: sentro.key-create('appbar-item-icon-padding', 5px);
           background: sentro.key-create('appbar-item-icon-fill', transparent);
           color: sentro.key-create('appbar-item-icon-ink', inherit);
-          transition: all var(--transition-time) ease-in-out;
+          transition: all var(--mu-transition-time) ease-in-out;
 
           @include sentro.breakpoint-create('medium') {
             @include sentro.key-bind('appbar-item-icon-width', 100%);
-            @include sentro.key-bind('appbar-item-icon-padding', (5px 10px));
+            @include sentro.key-bind('appbar-item-icon-padding', (5px));
             height: 30px;
           }
 
@@ -92,7 +98,7 @@
         @include sentro.selector-create('.appbar-item__label') {
           color: sentro.key-create('appbar-item-label-ink', inherit);
           font-size: clamp(12px, 2vw, 14px);
-          transition: all var(--transition-time) ease-in-out;
+          transition: all var(--mu-transition-time) ease-in-out;
         }
       }
     }

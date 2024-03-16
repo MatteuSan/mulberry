@@ -9,7 +9,7 @@
     <h2 class="title" style="margin-top: 15px">Announcements</h2>
     <div class="mu-alert">
       <p class="mu-alert__label">1 new announcement from the university!</p>
-      <button class="mu-alert__action" type="button">Read</button>
+      <button class="mu-button is-small" type="button">Read</button>
     </div>
     <div class="content-feed" style="margin-top: 10px">
       <div class="mu-card">
@@ -18,7 +18,7 @@
           <p class="mu-card__preview-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium amet iusto modi optio pariatur quibusdam veritatis. At odio praesentium tempore totam voluptates? Accusamus harum veritatis voluptate. Debitis magnam quia vero?</p>
         </div>
         <footer class="mu-card__actions">
-          <button class="mu-button" type="button">Read more</button>
+          <button class="mu-button is-small" type="button">Read</button>
         </footer>
       </div>
     </div>

@@ -3,6 +3,7 @@
 // Components
 @use 'components/mu-alert';
 @use 'components/mu-appbar';
+@use 'components/mu-button';
 @use 'components/mu-header';
 
 @include sentro.breakpoint-config((
@@ -49,6 +50,10 @@
       600: #c97900,
       ink: #000,
     ),
+    $disabled: (
+      default: rgba(255 255 255 / 12%),
+      ink: rgba(255 255 255 / 34%)
+    ),
     $t-size: (
       'xs': clamp(#{sentro.px-to-rem(10px)}, 2vw, #{sentro.px-to-rem(12px)}),
       'sm': clamp(#{sentro.px-to-rem(14px)}, 4vw, #{sentro.px-to-rem(16px)}),
@@ -67,9 +72,9 @@
       'condensed': 1.25,
     ),
   );
-  --transition-time: 0.175s;
-  --shadow-color: rgba(0, 0, 0, 0.2);
-  font-family: 'Nohemi', sans-serif;
+  --mu-transition-time: 0.175s;
+  --mu-shadow-color: rgba(0, 0, 0, 0.2);
+  font-family: 'Inter', sans-serif;
 }
 
 *,
@@ -126,15 +131,17 @@ body {
 
 @include mu-alert.render();
 @include mu-appbar.render();
+@include mu-button.render();
 @include mu-header.render();
 
 @include sentro.selector-create('.card') {
   padding: 0.7rem;
-  background: sentro.token-get('primary-300');
+  background: sentro.token-get('primary-200');
   border-radius: 0.5rem;
-  box-shadow: 0 0.3rem 0.5rem var(--shadow-color);
+  box-shadow: 0 0.3rem 0.5rem var(--mu-shadow-color);
 
   @include sentro.selector-create('.card__title') {
+    color: sentro.token-get('warning-200');
     font-size: sentro.token-get('t-size-lg');
     font-weight: 700;
     line-height: sentro.token-get('t-lead-normal');
@@ -150,13 +157,8 @@ body {
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     margin: 10px 0 0 0;
-
-    @include sentro.selector-create('.card__action') {
-      background: transparent;
-      border: none;
-    }
   }
 }

@@ -1,6 +1,17 @@
 @use '@matteusan/sentro';
+@mixin render() {
+  $fill-default-opacity: 0%;
+  $fill-hover-opacity: 20%;
+  $fill-focus-opacity: 20%;
+  $fill-active-opacity: 33%;
 
-@mixin base() {
+  $border-default-opacity: 0%;
+  $border-hover-opacity: 2%;
+  $border-focus-opacity: 2%;
+  $border-active-opacity: 3.3%;
+
+  $outline-focus-opacity: 50%;
+
   @include sentro.selector-create('.button') {
     display: inline-flex;
     flex-flow: row nowrap;
@@ -15,9 +26,111 @@
     cursor: pointer;
     outline: sentro.key-create('button-outline', none);
 
-    -webkit-appearance: caret;
+    padding: sentro.key-create('button-padding', (0.5rem 0.7rem));
+    border-radius: sentro.key-create('button-border-radius', 0.3rem);
 
-    @content;
+    background: sentro.key-create('button-fill', rgba(0 0 0 / 0));
+    color: sentro.key-create('button-ink', sentro.token-get('surface-ink'));
+    border: sentro.key-create('button-border-size', 1px) solid sentro.key-create('button-border', rgba(0 0 0 / 0));
+
+    -webkit-appearance: caret;
+    transition: all var(--mu-transition-time) ease;
+
+    &.is-small {
+      @include sentro.key-bind('button-padding', (0.3rem 0.5rem));
+    }
+
+    &.is-large {
+      @include sentro.key-bind('button-padding', (0.7rem 1.2rem));
+    }
+
+    &:not(:disabled) {
+      @include sentro.key-bind('button-fill', rgba(0 0 0 / 0));
+      @include sentro.key-bind('button-ink', sentro.token-get('accent-400'));
+      @include sentro.key-bind('button-border', rgba(0 0 0 / 0));
+
+      &:hover {
+        @include sentro.key-bind('button-fill', rgba(raw('accent-400'), $fill-hover-opacity));
+        @include sentro.key-bind('button-border', rgba(raw('accent-400'), $border-hover-opacity));
+      }
+
+      &:focus {
+        @include sentro.key-bind('button-fill', rgba(raw('accent-400'), $fill-focus-opacity));
+        @include sentro.key-bind('button-border', rgba(raw('accent-400'), $border-focus-opacity));
+        @include sentro.key-bind('button-outline', 2px solid rgba(raw('accent-400'), $outline-focus-opacity));
+      }
+
+      &:active {
+        @include sentro.key-bind('button-fill', rgba(raw('accent-400'), $fill-active-opacity));
+        @include sentro.key-bind('button-border', rgba(raw('accent-400'), $border-active-opacity));
+      }
+    }
+
+    &:disabled {
+      @include sentro.key-bind('button-fill', rgba(0 0 0 / 0));
+      @include sentro.key-bind('button-ink', sentro.token-get('disabled-ink'));
+      @include sentro.key-bind('button-border', rgba(0 0 0 / 0));
+      cursor: not-allowed;
+    }
+
+    &.is-outlined {
+      @include sentro.key-bind('button-fill', rgba(0 0 0 / 0));
+      @include sentro.key-bind('button-ink', sentro.token-get('accent-400'));
+      @include sentro.key-bind('button-border', sentro.token-get('accent-400'));
+
+      &:hover {
+        @include sentro.key-bind('button-fill', sentro.token-get('accent-400'));
+        @include sentro.key-bind('button-ink', sentro.token-get('accent-ink'));
+        @include sentro.key-bind('button-border', sentro.token-get('accent-400'));
+      }
+
+      &:focus {
+        @include sentro.key-bind('button-fill', rgba(raw('accent-400'), $fill-focus-opacity));
+        @include sentro.key-bind('button-ink', sentro.token-get('accent-400'));
+        @include sentro.key-bind('button-border', sentro.token-get('accent-400'));
+        @include sentro.key-bind('button-outline', 2px solid rgba(raw('accent-400'), $outline-focus-opacity));
+      }
+
+      &:active {
+        @include sentro.key-bind('button-fill', sentro.token-get('accent-300'));
+        @include sentro.key-bind('button-ink', sentro.token-get('accent-ink'));
+        @include sentro.key-bind('button-border', sentro.token-get('accent-300'));
+      }
+
+      &:disabled {
+        @include sentro.key-bind('button-fill', rgba(0 0 0 / 0));
+        @include sentro.key-bind('button-ink', sentro.token-get('disabled-ink'));
+        @include sentro.key-bind('button-border', sentro.token-get('disabled'));
+      }
+    }
+
+    &.is-filled {
+      @include sentro.key-bind('button-fill', sentro.token-get('accent-400'));
+      @include sentro.key-bind('button-ink', sentro.token-get('accent-ink'));
+      @include sentro.key-bind('button-border', sentro.token-get('accent-400'));
+
+      &:hover {
+        @include sentro.key-bind('button-fill', sentro.token-get('accent-400'));
+        @include sentro.key-bind('button-border', sentro.token-get('accent-400'));
+      }
+
+      &:focus {
+        @include sentro.key-bind('button-fill', sentro.token-get('accent-400'));
+        @include sentro.key-bind('button-border', sentro.token-get('accent-400'));
+        @include sentro.key-bind('button-outline', 2px solid rgba(raw('accent-400'), $outline-focus-opacity));
+      }
+
+      &:active {
+        @include sentro.key-bind('button-fill', sentro.token-get('accent-300'));
+        @include sentro.key-bind('button-border', sentro.token-get('accent-300'));
+      }
+
+      &:disabled {
+        @include sentro.key-bind('button-fill', sentro.token-get('disabled'));
+        @include sentro.key-bind('button-ink', sentro.token-get('disabled-ink'));
+        @include sentro.key-bind('button-border', sentro.token-get('disabled'));
+      }
+    }
 
     @include sentro.selector-create('.button__icon') {
       position: relative;
@@ -49,6 +162,6 @@
   }
 }
 
-@mixin render() {
-
+@function raw($query) {
+  @return sentro.token-get-raw($query);
 }
