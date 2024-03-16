@@ -10,12 +10,6 @@ use Illuminate\Support\Facades\Hash;
 
 class InController extends Controller
 {
-
-  public function __construct()
-  {
-    $this->middleware(['guest', 'student']);
-  }
-
   public function register(Request $request): RedirectResponse
   {
     $this->validate($request, [

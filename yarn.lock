@@ -180,12 +180,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@matteusan/himig@npm:1.1.0":
-  version: 1.1.0
-  resolution: "@matteusan/himig@npm:1.1.0"
+"@matteusan/himig@npm:^1.3.3":
+  version: 1.3.3
+  resolution: "@matteusan/himig@npm:1.3.3"
   dependencies:
     "@matteusan/sentro": 0.1.25
-  checksum: da0e089710ea1bdb630e9e3d05208a15264b0675447363940683f36c92a744f285bdbc63092aff49caf7ab9fa1c3ae344cd12f2903621df05e077f4530995423
+  checksum: bc2e4bf70f90edb8dedd8179944ad3178ed8b4aea878f055a9cc7da5056795cb6e63e7a54bc388882795f95e1cb5147cb63da3d0633cd42d5d057c7a08617a49
   languageName: node
   linkType: hard
 
@@ -1317,7 +1317,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@matteusan/himig": 1.1.0
+    "@matteusan/himig": ^1.3.3
     "@matteusan/sentro": ^0.1.25
     axios: ^1.6.4
     laravel-vite-plugin: ^1.0.0
