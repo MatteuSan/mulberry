@@ -1,30 +1,30 @@
-@use '@matteusan/sentro';
+@use '@matteusan/himig';
 
 @mixin render() {
-  @include sentro.selector-create('.alert') {
+  .mu-alert {
     width: 100%;
     padding: 10px 15px;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
-    background: sentro.key-create('alert-fill', sentro.token-get('warning-200'));
-    color: sentro.key-create('alert-ink', sentro.token-get('warning-600'));
-    border: 1px solid sentro.key-create('alert-border', sentro.token-get('warning-300'));
+    background: himig.key-create('alert-fill', himig.token-get('warning-200'));
+    color: himig.key-create('alert-ink', himig.token-get('warning-600'));
+    border: 1px solid himig.key-create('alert-border', himig.token-get('warning-300'));
     border-radius: 0.3rem;
     transition: all var(--mu-transition-time) ease-in-out;
 
-    @include sentro.selector-create('.alert__label') {
-      @include sentro.line-clamp(2);
+    .mu-alert__label {
+      @include himig.break(2);
     }
 
     &.is-high {
-      @include sentro.key-bind('alert-fill', sentro.token-get('error-200'));
-      @include sentro.key-bind('alert-ink', sentro.token-get('error-600'));
-      @include sentro.key-bind('alert-border', sentro.token-get('error-300'));
+      @include himig.key-bind('alert-fill', himig.token-get('error-200'));
+      @include himig.key-bind('alert-ink', himig.token-get('error-600'));
+      @include himig.key-bind('alert-border', himig.token-get('error-300'));
     }
 
-    @include sentro.selector-create('.alert__action') {
+    .mu-alert__action {
       padding: 0.3rem;
       background: transparent;
       border: none;
@@ -35,7 +35,7 @@
       transition: all var(--mu-transition-time) ease-in-out;
 
       &:hover {
-        background: sentro.token-get('warning-300');
+        background: himig.token-get('warning-300');
       }
     }
   }

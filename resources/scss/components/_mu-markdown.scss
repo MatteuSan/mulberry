@@ -1,0 +1,49 @@
+@use '@matteusan/himig';
+
+@mixin render() {
+  .markdown {
+    h1 {
+      @include himig.typography-apply('md-h1', (
+        family: 'supertitle',
+        size: 'supertitle',
+        weight: 'supertitle',
+        line-height: 'supertitle',
+      ));
+      @include himig.struct-margin('md-h1', ('md' 0 'sm'));
+    }
+
+    h2 {
+      @include himig.typography-apply('md-h2', (
+        family: 'title',
+        size: 'title',
+        weight: 'title',
+        line-height: 'title',
+      ));
+      @include himig.struct-margin('md-h2', ('md' 0 'sm'));
+    }
+
+    h3 {
+      @include himig.typography-apply('md-h3', (
+        family: 'subtitle',
+        size: 'subtitle',
+        weight: 'subtitle',
+        line-height: 'subtitle',
+      ));
+      @include himig.struct-margin('md-h3', ('md' 0 'sm'));
+    }
+
+    h4 {
+      @include himig.typography-apply('md-h4', (
+        family: 'subtitle',
+        size: 'body',
+        weight: 'subtitle',
+        line-height: 'subtitle',
+      ));
+      @include himig.struct-margin('md-h4', ('md' 0 'sm'));
+    }
+
+    li {
+      margin-left: 1.5rem;
+    }
+  }
+}

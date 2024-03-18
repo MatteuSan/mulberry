@@ -12,9 +12,7 @@
 </head>
 <body>
 <main class="content-wrap is-auth">
-  <section class="mu-surface">
-    @yield('content')
-  </section>
+  @yield('content')
 </main>
 @livewireScripts
 </body>

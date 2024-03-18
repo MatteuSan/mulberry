@@ -1,0 +1,54 @@
+@use '@matteusan/himig';
+
+@mixin render() {
+  .mu-pathbar {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    overflow-x: auto;
+    gap: 0.5rem;
+
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-thumb {
+      display: none;
+    }
+
+    .mu-pathbar__item {
+      display: flex;
+      flex-flow: row nowrap;
+      gap: 0.3rem;
+      align-items: center;
+      transition: all var(--ms-transition-time) ease;
+      white-space: nowrap;
+      @include himig.color-apply('pathbar-item', (
+        ink: inherit
+      ));
+      @include himig.typography-apply('pathbar-item', (
+        size: himig.to-rem(12px),
+        weight: 'small'
+      ));
+
+      &:hover {
+        @include himig.color-bind('pathbar-item', (
+          ink: himig.token-get('warning-400')
+        ))
+      }
+
+      &:not(:last-child)::after {
+        display: block;
+        position: relative;
+        content: '→';
+        margin: 0 0.3rem;
+      }
+
+      &:last-child {
+        @include himig.color-bind('pathbar-item', (
+          ink: himig.token-get('warning-400')
+        ));
+        @include himig.typography-bind('pathbar-item', (
+          weight: 'bold'
+        ));
+      }
+    }
+  }
+}

@@ -59,7 +59,7 @@ return [
     |
     | All of the event listeners for Octane's events are defined below. These
     | listeners are responsible for resetting your application's state for
-    | the next request. You may even add your own listeners to the list.
+    | the next request. You may even add your own listeners to the admin.
     |
     */
 
@@ -176,7 +176,7 @@ return [
     | File Watching
     |--------------------------------------------------------------------------
     |
-    | The following list of files and directories will be watched when using
+    | The following admin of files and directories will be watched when using
     | the --watch option offered by Octane. If any of the directories and
     | files are changed, Octane will automatically reload your workers.
     |

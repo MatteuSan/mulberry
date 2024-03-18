@@ -1,164 +1,283 @@
-@use '@matteusan/sentro' with ($prefix: 'mu', $context: 'theme');
+@use '@matteusan/himig';
+
+@use '@matteusan/himig/ms-button';
+@use '@matteusan/himig/ms-card';
+@use '@matteusan/himig/ms-form-field';
+@use '@matteusan/himig/ms-select-field';
+@use '@matteusan/himig/ms-utils';
 
 // Components
 @use 'components/mu-alert';
 @use 'components/mu-appbar';
-@use 'components/mu-button';
 @use 'components/mu-header';
+@use 'components/mu-markdown';
+@use 'components/mu-pathbar';
 
-@include sentro.breakpoint-config((
-  'small': sentro.px-to-rem(320px),
-  'medium': sentro.px-to-rem(640px),
-  'large': sentro.px-to-rem(890px),
-  'xlarge': sentro.px-to-rem(1077px),
-));
-
-:root {
-  @include sentro.token-config(
-    $primary: (
-      200: #949494,
-      300: #707070,
-      400: #505050,
-      600: #2d2d2d,
-      ink: #fff,
-    ),
-    $accent: (
-      200: #c7575d,
-      300: #cb3138,
-      400: #9d0a10,
-      600: #4f0406,
-      ink: #fdbc2d
-    ),
-    $surface: (
-      200: #fff,
-      300: #e5e5e5,
-      400: #c4c4c4,
-      600: #939393,
-      ink: #000
-    ),
-    $error: (
-      200: #ff8d8d,
-      300: #ec4f4f,
-      400: #c41b1b,
-      600: #8d0c0c,
-      ink: #fff,
-    ),
-    $warning: (
+@include himig.init(
+  $primary: (
+    200: #949494,
+    300: #707070,
+    400: #505050,
+    600: #2d2d2d,
+    800: #212121,
+  ),
+  $accent: (
+    200: #c7575d,
+    300: #cb3138,
+    400: #9d0a10,
+    600: #4f0406,
+    800: #250002
+  ),
+  $surface: (
+    200: #fff,
+    300: #e5e5e5,
+    400: #c4c4c4,
+    600: #939393,
+    800: #696969,
+  ),
+  $error: (
+    200: #ff8d8d,
+    300: #ec4f4f,
+    400: #c41b1b,
+    600: #8d0c0c,
+  ),
+  $extend: (
+    accent-ink: #fdbc2d !important,
+    warning: (
       200: #ffc46a,
       300: #fdaa31,
       400: #ff9900,
       600: #c97900,
+      800: #7a4c00,
       ink: #000,
+
+      alpha: (
+        200: rgba(#ff9900, 8%),
+        300: rgba(#ff9900, 12%),
+        400: rgba(#ff9900, 34%),
+        600: rgba(#ff9900, 66%),
+      )
     ),
-    $disabled: (
-      default: rgba(255 255 255 / 12%),
-      ink: rgba(255 255 255 / 34%)
-    ),
-    $t-size: (
-      'xs': clamp(#{sentro.px-to-rem(10px)}, 2vw, #{sentro.px-to-rem(12px)}),
-      'sm': clamp(#{sentro.px-to-rem(14px)}, 4vw, #{sentro.px-to-rem(16px)}),
-      'md': clamp(#{sentro.px-to-rem(17px)}, 5vw, #{sentro.px-to-rem(21px)}),
-      'lg': clamp(#{sentro.px-to-rem(19px)}, 6vw, #{sentro.px-to-rem(25px)}),
-      'xl': clamp(#{sentro.px-to-rem(24px)}, 8vw, #{sentro.px-to-rem(30px)}),
-      '2xl': clamp(#{sentro.px-to-rem(26px)}, 8vw, #{sentro.px-to-rem(36px)}),
-      '3xl': clamp(#{sentro.px-to-rem(32px)}, 10vw, #{sentro.px-to-rem(42px)}),
-      '4xl': clamp(#{sentro.px-to-rem(39px)}, 10vw, #{sentro.px-to-rem(49px)}),
-      '5xl': clamp(#{sentro.px-to-rem(47px)}, 12vw, #{sentro.px-to-rem(57px)}),
-      '6xl': clamp(#{sentro.px-to-rem(56px)}, 14vw, #{sentro.px-to-rem(66px)}),
-    ),
-    $t-lead: (
-      'broad': 2,
-      'normal': 1.5,
-      'condensed': 1.25,
-    ),
+  )
+) {
+  .content-wrap {
+    width: calc(100% - 50px) !important;
+
+    &.is-auth {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+    }
+  }
+
+  @include mu-alert.render();
+  @include ms-button.render();
+  @include ms-button.extend('small') {
+    @include ms-button.struct((
+      padding: (0.3rem 0.5rem)
+    ));
+    @include ms-button.typography((
+      size: 12px
+    ));
+  }
+  @include ms-button.extend('inverted') {
+    @include ms-button.color((
+      fill: rgba(0 0 0 / 0),
+      ink: 'warning-400',
+      border: rgba(0 0 0 / 0),
+    ));
+
+    &:hover, &:focus {
+      @include ms-button.color((
+        fill: rgba(himig.token-get-raw('warning-400'), himig.$color-fill-hover-opacity),
+        ink: 'warning-400',
+        border: rgba(himig.token-get-raw('warning-400'), himig.$color-fill-hover-opacity)
+      ));
+    }
+
+    &:focus {
+      --ms-button-outline: 2px solid #{rgba(himig.token-get-raw('warning-400'), himig.$color-fill-active-opacity)}
+    }
+
+    &:active {
+      @include ms-button.color((
+        fill: rgba(himig.token-get-raw('warning-400'), himig.$color-fill-active-opacity),
+        ink: 'warning-400',
+        border: rgba(himig.token-get-raw('warning-400'), himig.$color-fill-active-opacity)
+      ));
+    }
+  }
+  @include ms-button.extend('outlined.inverted') {
+    @include ms-button.color((
+      fill: rgba(0 0 0 / 0),
+      ink: 'warning-400',
+      border: 'warning-400'
+    ));
+
+    &:hover, &:focus {
+      @include ms-button.color((
+        fill: 'warning-300',
+        ink: 'warning-ink',
+        border: 'warning-300'
+      ));
+    }
+
+    &:focus {
+      --ms-button-outline: 2px solid #{rgba(himig.token-get-raw('warning-400'), himig.$color-fill-active-opacity)}
+    }
+
+    &:active {
+      @include ms-button.color((
+        fill: 'warning-200',
+        ink: 'warning-ink',
+        border: 'warning-200'
+      ));
+    }
+  }
+  @include ms-button.extend('filled.inverted') {
+    @include ms-button.color((
+      fill: 'warning-400',
+      ink: 'warning-ink',
+      border: 'warning-400',
+    ));
+
+    &:hover, &:focus {
+      @include ms-button.color((
+        fill: 'warning-300',
+        ink: 'warning-ink',
+        border: 'warning-300',
+      ));
+    }
+
+    &:focus {
+      --ms-button-outline: 2px solid #{rgba(himig.token-get-raw('warning-400'), himig.$color-fill-active-opacity)}
+    }
+
+    &:active {
+      @include ms-button.color((
+        fill: 'warning-200',
+        ink: 'warning-ink',
+        border: 'warning-200',
+      ));
+    }
+  }
+  @include ms-button.extend('fullwidth') {
+    @include ms-button.struct((
+      width: (
+        max: 100%,
+      )
+    ));
+  }
+
+  @include ms-card.render(
+    $color: (
+      fill: 'primary-300',
+      ink: 'primary-ink',
+      border: 'primary-300'
+    )
   );
-  --mu-transition-time: 0.175s;
-  --mu-shadow-color: rgba(0, 0, 0, 0.2);
-  font-family: 'Inter', sans-serif;
-}
+  .ms-card__subtitle {
+    @include himig.break(2);
+  }
+  @include ms-card.extend('small') {
+    @include ms-card.typography((
+      family: (
+        'default': 'small',
+        'title': 'subtitle',
+        'subtitle': 'body',
+      ),
+      size: (
+        'default': 12px,
+        'title': 'subtitle',
+        'subtitle': 'body',
+        'icon': 50px
+      ),
+      weight: (
+        'default': 'small',
+        'title': 'bold',
+        'subtitle': 'normal',
+      ),
+      line-height: (
+        'default': 'small',
+        'title': 'normal',
+        'subtitle': 'normal',
+      ),
+    ));
+  }
+  @include ms-form-field.render(
+    $color: (
+      fill: (
+        default: 'surface-400',
+        hover: 'warning-200'
+      ),
+      border: (
+        default: 'surface-600',
+        hover: 'warning-alpha-600',
+        focus: 'warning-400',
+      )
+    )
+  );
+  @include ms-select-field.render(
+    $color: (
+      fill: (
+        default: 'surface-400',
+        hover: 'warning-200'
+      ),
+      border: (
+        default: 'surface-600',
+        hover: 'warning-alpha-600',
+        focus: 'warning-400',
+      )
+    )
+  );
+  .ms-select-field {
+    --ms-select-field-label-ink: var(--ms-theme-surface-ink) !important;
+  }
+  @include ms-utils.color();
+  @include ms-utils.struct();
+  @include ms-utils.typography();
+  @include ms-utils.layout();
 
-*,
-:before,
-:after {
-  padding: 0;
-  margin: 0;
-  box-sizing: inherit;
-  color: inherit;
-}
+  @include mu-appbar.render();
+  @include mu-header.render();
+  @include mu-markdown.render();
+  @include mu-pathbar.render();
 
-html {
-  font-size: 100%;
-  box-sizing: border-box;
-}
-
-body {
-  background: sentro.token-get('primary-600');
-  color: sentro.token-get('primary-ink');
-  font-size: sentro.token-get('t-size-sm');
-}
-
-.content-wrap {
-  width: calc(100% - 30px);
-  max-width: sentro.key-create('content-wrap-max-w', 1077px);
-  margin: 0 auto;
-  padding: 25px 0;
-  display: sentro.key-create('content-wrap-display', grid);
-
-  @include sentro.breakpoint-create('large') {
-    padding: 45px 0;
+  @for $i from 1 through 3 {
+    .truncated-#{$i} {
+      @include himig.break($i);
+    }
   }
 
-  &.is-auth {
-    @include sentro.key-bind('content-wrap-max-w', 770px);
-    @include sentro.key-bind('content-wrap-display', flex);
-    flex-flow: row nowrap;
-    justify-content: center;
-    align-items: center;
-  }
-}
+  :where(.ms-skeleton) {
+    position: relative;
+    overflow: hidden;
+    background: himig.token-get('primary-600');
+    border: 1px solid himig.token-get('primary-400');
+    border-radius: 4px;
+    animation: blink 1.5s infinite;
+    user-select: none;
 
-.supertitle {
-  font-weight: 900;
-  font-size: sentro.token-get('t-size-2xl');
-  line-height: sentro.token-get('t-lead-broad');
-}
+    :where(.blink) {
+      background: var(--ms-skeleton-fill, himig.token-get('primary-400'));
+      color: rgba(0 0 0 / 0);
+      animation: blink 1.5s infinite;
 
-.title {
-  font-weight: 700;
-  font-size: sentro.token-get('t-size-xl');
-  line-height: sentro.token-get('t-lead-normal');
-}
-
-@include mu-alert.render();
-@include mu-appbar.render();
-@include mu-button.render();
-@include mu-header.render();
-
-@include sentro.selector-create('.card') {
-  padding: 0.7rem;
-  background: sentro.token-get('primary-200');
-  border-radius: 0.5rem;
-  box-shadow: 0 0.3rem 0.5rem var(--mu-shadow-color);
-
-  @include sentro.selector-create('.card__title') {
-    color: sentro.token-get('warning-200');
-    font-size: sentro.token-get('t-size-lg');
-    font-weight: 700;
-    line-height: sentro.token-get('t-lead-normal');
+      &.is-accent.is-inverted {
+        --ms-skeleton-fill: #{himig.token-get('warning-400')};
+      }
+    }
   }
 
-  @include sentro.selector-create('.card__preview-text') {
-    font-size: sentro.token-get('t-size-sm');
-    line-height: sentro.token-get('t-lead-condensed');
-    @include sentro.line-clamp(2);
-  }
-
-  @include sentro.selector-create('.card__actions') {
-    width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-end;
-    align-items: center;
-    margin: 10px 0 0 0;
+  @keyframes blink {
+    0% {
+      opacity: 0.7;
+    }
+    50% {
+      opacity: 0.4;
+    }
+    100% {
+      opacity: 0.7;
+    }
   }
 }

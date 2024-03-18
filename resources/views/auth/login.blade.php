@@ -3,7 +3,5 @@
 @section('title', 'Login')
 
 @section('content')
-    <header>
-      <h2>Login</h2>
-    </header>
+  <livewire:auth.login-form />
 @endsection
