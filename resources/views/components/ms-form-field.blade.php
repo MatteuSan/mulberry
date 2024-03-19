@@ -1,38 +1,44 @@
-<span>
+@props([
+  'width' => 'w-full',
+  'alpineModel' => ''
+])
+<span class="block {{ $width }}">
   @if($type == 'textarea')
     <label class="ms-form-field @error($name) is-error @enderror">
-    <span class="ms-form-field__label">{{ $label }}</span>
-    <textarea
-      class="ms-form-field__input"
-      name="{{ $name }}"
-      rows="10"
-      placeholder="a"
-      wire:model="{{ $name }}"
-      @if($required) required @endif
-      @if($disabled) disanled @endif
-    >{{ $value ?: old($name) }}</textarea>
-    @if($helper)
+      <span class="ms-form-field__label">{{ $label }}</span>
+      <textarea
+        class="ms-form-field__input"
+        name="{{ $name }}"
+        rows="10"
+        placeholder="a"
+        wire:model="{{ $name }}"
+        @if ($alpineModel) x-model="{{ $alpineModel }}" @endif
+        @if($required) required @endif
+        @if($disabled) disabled @endif
+      >{{ $value ?: old($name) }}</textarea>
+      @if($helper)
         <span class="ms-form-field__helper">{{ $helper }}</span>
       @endif
       @error($name) <span class="ms-form-field__helper">{{ $message }}</span> @enderror
-  </label>
+    </label>
   @else
     <label class="ms-form-field @error($name) is-error @enderror">
-    <span class="ms-form-field__label">{{ $label }}</span>
-    <input
-      type="{{ $type }}"
-      class="ms-form-field__input"
-      placeholder="a"
-      name="{{ $name }}"
-      value="{{ $value ?: old($name) }}"
-      wire:model="{{ $name }}"
-      @if($required) required @endif
-      @if($disabled) disanled @endif
-    />
-    @if($helper)
+      <span class="ms-form-field__label">{{ $label }}</span>
+      <input
+        type="{{ $type }}"
+        class="ms-form-field__input"
+        placeholder="a"
+        name="{{ $name }}"
+        value="{{ $value ?: old($name) }}"
+        wire:model="{{ $name }}"
+        @if ($alpineModel) x-model="{{ $alpineModel }}" @endif
+        @if($required) required @endif
+        @if($disabled) disabled @endif
+      />
+      @if($helper)
         <span class="ms-form-field__helper">{{ $helper }}</span>
       @endif
       @error($name) <span class="ms-form-field__helper">{{ $message }}</span> @enderror
-  </label>
+    </label>
   @endif
 </span>

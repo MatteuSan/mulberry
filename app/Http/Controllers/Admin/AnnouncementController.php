@@ -11,7 +11,7 @@ class AnnouncementController extends Controller
   public function editRender($id)
   {
     return view('admin.announcements.edit', [
-      'announcement' => Announcement::where('id', $id)->get()[0]
+      'announcement' => Announcement::where('id', $id)->firstOrFail()
     ]);
   }
 

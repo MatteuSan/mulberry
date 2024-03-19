@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-  use HasApiTokens, HasFactory, Notifiable;
+  use HasFactory;
 
   protected $fillable = [
     'username',
@@ -20,6 +20,7 @@ class User extends Authenticatable
     'suffix',
     'email',
     'password',
+    'dob',
     'role_id',
   ];
 
@@ -33,26 +34,28 @@ class User extends Authenticatable
     'password' => 'hashed',
   ];
 
-  public function role()
+  public function announcements(): HasMany
   {
-    return $this->belongsTo(Role::class);
+    return $this->hasMany(Announcement::class);
   }
 
-  public function isStudent(): bool
+  public function readAnnouncements(): HasMany
   {
-    // Superuser = 1
-    // Staff = 2
-    // Student = 3
-    return $this->role_id === 3;
+    return $this->hasMany(ReadAnnouncement::class, 'user_id', 'id');
   }
 
-  public function isStaff(): bool
+  public function role(): HasOne
   {
-    return $this->role_id === 2;
+    return $this->hasOne(Role::class, 'id', 'role_id');
   }
 
-  public function isSuperuser(): bool
+  public function student(): HasOne
   {
-    return $this->role_id === 1;
+    return $this->hasOne(Student::class, 'user_id', 'id');
+  }
+
+  public function staff(): HasOne
+  {
+    return $this->hasOne(Staff::class, 'user_id', 'id');
   }
 }

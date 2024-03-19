@@ -15,7 +15,7 @@ class EnsureUserIsSuperuser
    */
   public function handle(Request $request, Closure $next): Response
   {
-    if (!auth()->user()->isSuperuser()) return redirect()->route('home');
+    if (!auth()->check() || !auth()->user()->role_id == 1) return redirect()->route('home');
     return $next($request);
   }
 }

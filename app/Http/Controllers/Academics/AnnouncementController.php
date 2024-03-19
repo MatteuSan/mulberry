@@ -5,28 +5,37 @@ namespace App\Http\Controllers\Academics;
 use App\Http\Controllers\Controller;
 use App\Models\Announcement;
 use App\Models\ReadAnnouncement;
+use App\Models\User;
 use Illuminate\View\View;
 
 class AnnouncementController extends Controller
 {
-  public function render_once($id): View
+  public function renderOnce($id): View
   {
-    if (!ReadAnnouncement::where('announcement_id', $id)->where('user_id', auth()->id())->exists()) {
+    if (!auth()->user()->readAnnouncements()->where('announcement_id', $id)->exists()) {
       ReadAnnouncement::create([
         'announcement_id' => $id,
         'user_id' => auth()->id()
       ]);
     }
+
+    $announcement = Announcement::where('id', $id)->firstOrFail();
+
     return view('main.academics.announcements.id', [
-      'announcement' => Announcement::where('id', $id)->firstOrFail()
+      'announcement' => $announcement,
+      'author' => $announcement->user()->firstOrFail(),
     ]);
   }
 
   public function render(): View
   {
+    $announcements = Announcement::orderBy('updated_at', 'desc')->get()->filter(function ($announcement) {
+      return $announcement->created_at->diffInMilliseconds() <= auth()->user()->created_at->diffInMilliseconds();
+    });
+
     return view('main.academics.announcements.index', [
-      'announcements' => Announcement::orderBy('updated_at', 'desc')->get(),
-      'announcements_read' => ReadAnnouncement::where('user_id', auth()->id())->get()
+      'announcements' => $announcements,
+      'announcements_read' => auth()->user()->readAnnouncements()->get(),
     ]);
   }
 }

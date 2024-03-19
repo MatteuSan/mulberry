@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Program extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = [
-        'title',
-        'slug',
-        'description',
-        'staff_id',
-        'department_id'
-    ];
+  protected $fillable = [
+    'title',
+    'slug',
+    'description',
+    'staff_id',
+    'department_id'
+  ];
 }

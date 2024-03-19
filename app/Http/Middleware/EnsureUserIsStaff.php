@@ -15,7 +15,7 @@ class EnsureUserIsStaff
    */
   public function handle(Request $request, Closure $next): Response
   {
-    if (!auth()->user()->isStaff() || !auth()->user()->isSuperuser()) return redirect()->route('home');
+    if (!auth()->check() || !auth()->user()->role_id != 2 && auth()->user()->role_id == 3) return redirect()->route('home');
     return $next($request);
   }
 }

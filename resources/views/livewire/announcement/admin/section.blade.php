@@ -7,6 +7,7 @@
         :content="$announcement->content"
         :created_at="$announcement->created_at"
         :updated_at="$announcement->updated_at"
+        :author="$announcement->user()->first()->name"
       />
     @endforeach
   @else

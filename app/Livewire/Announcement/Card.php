@@ -11,10 +11,8 @@ use Livewire\Component;
 class Card extends Component
 {
   public int $id;
-  public string $title,
-                $content;
-  public Carbon $created_at,
-                $updated_at;
+  public string $title, $content, $author;
+  public Carbon $created_at, $updated_at;
   public bool $isUnread = false;
 
   public function mount(): void

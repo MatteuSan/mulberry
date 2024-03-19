@@ -42,8 +42,20 @@
       @include himig.struct-margin('md-h4', ('md' 0 'sm'));
     }
 
+    ul, ol {
+      margin: 0.7rem 0;
+
+      ul, ol {
+        margin: 0;
+      }
+    }
+
     li {
       margin-left: 1.5rem;
+    }
+
+    a {
+      @extend .mu-link;
     }
   }
 }

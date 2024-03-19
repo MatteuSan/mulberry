@@ -3,6 +3,7 @@
 @use '@matteusan/himig/ms-button';
 @use '@matteusan/himig/ms-card';
 @use '@matteusan/himig/ms-form-field';
+@use '@matteusan/himig/ms-list';
 @use '@matteusan/himig/ms-select-field';
 @use '@matteusan/himig/ms-utils';
 
@@ -22,11 +23,11 @@
     800: #212121,
   ),
   $accent: (
-    200: #c7575d,
-    300: #cb3138,
-    400: #9d0a10,
-    600: #4f0406,
-    800: #250002
+    200: #ffc46a,
+    300: #fdaa31,
+    400: #ff9900,
+    600: #c97900,
+    800: #7a4c00,
   ),
   $surface: (
     200: #fff,
@@ -42,7 +43,6 @@
     600: #8d0c0c,
   ),
   $extend: (
-    accent-ink: #fdbc2d !important,
     warning: (
       200: #ffc46a,
       300: #fdaa31,
@@ -50,7 +50,6 @@
       600: #c97900,
       800: #7a4c00,
       ink: #000,
-
       alpha: (
         200: rgba(#ff9900, 8%),
         300: rgba(#ff9900, 12%),
@@ -64,6 +63,7 @@
     width: calc(100% - 50px) !important;
 
     &.is-auth {
+      max-width: 670px;
       min-height: 100vh;
       display: grid;
       place-items: center;
@@ -72,6 +72,13 @@
 
   @include mu-alert.render();
   @include ms-button.render();
+  .ms-button__icon {
+    max-width: none !important;
+
+    > * {
+      max-width: none !important;
+    }
+  }
   @include ms-button.extend('small') {
     @include ms-button.struct((
       padding: (0.3rem 0.5rem)
@@ -217,6 +224,31 @@
       )
     )
   );
+  @include ms-list.render(
+    $struct: (
+      width: (
+        max: 100%
+      )
+    )
+  );
+  @include ms-list.extend('dropdown') {
+    display: none;
+
+    @include himig.breakpoint-create('medium') {
+      &.is-open {
+        display: flex;
+      }
+
+      .ms-list__item.is-active {
+        @include himig.color-bind('list-item', (
+          fill: 'warning-200',
+          ink: 'warning-ink',
+          border: 'warning-200'
+        ));
+        font-weight: 700;
+      }
+    }
+  }
   @include ms-select-field.render(
     $color: (
       fill: (
@@ -232,6 +264,7 @@
   );
   .ms-select-field {
     --ms-select-field-label-ink: var(--ms-theme-surface-ink) !important;
+    --ms-select-field-border: var(--ms-theme-surface-600);
   }
   @include ms-utils.color();
   @include ms-utils.struct();
@@ -266,6 +299,43 @@
       &.is-accent.is-inverted {
         --ms-skeleton-fill: #{himig.token-get('warning-400')};
       }
+    }
+  }
+
+  .mu-link {
+    display: inline-block;
+    color: himig.token-get('warning-400');
+    text-decoration: none;
+    transition: all var(--ms-transition-time) ease;
+
+    &:hover {
+      background: #{rgba(himig.token-get-raw('warning-400'), himig.$color-fill-hover-opacity)};
+    }
+  }
+
+  .mu-modal__overlay {
+    background: rgba(0 0 0 / 0.5);
+    display: none;
+    place-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 110;
+
+    &.is-open {
+      display: grid;
+
+      .mu-modal {
+        display: block;
+      }
+    }
+
+    .mu-modal {
+      width: calc(100% - 30px);
+      max-width: 670px;
+      display: none;
     }
   }
 

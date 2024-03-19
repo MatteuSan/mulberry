@@ -12,7 +12,8 @@ class Card extends Component
 {
   public int $id;
   public string $title,
-                $content;
+                $content,
+                $author;
   public Carbon $created_at,
                 $updated_at;
 

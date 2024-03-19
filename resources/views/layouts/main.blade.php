@@ -1,10 +1,3 @@
-@php
-function rn(string $routeName): bool {
-  $baseRoute = explode('.', Route::currentRouteName())[0];
-  return $baseRoute == $routeName;
-}
-@endphp
-
 <!doctype html>
 <html lang={{ str_replace('_', '-', app()->getLocale()) }}>
 <head>
@@ -12,9 +5,9 @@ function rn(string $routeName): bool {
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>@yield('title') - MapuaHub</title>
-  <link rel="stylesheet" href="{{ Vite::asset('resources/scss/main.scss') }}">
-  <script type="text/javascript" src="{{ Vite::asset('resources/js/app.js') }}" defer></script>
+  <title>@yield('title') - Mulberry</title>
+  @vite('resources/scss/main.scss')
+  @vite('resources/js/app.js')
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,51 +29,76 @@ function rn(string $routeName): bool {
     </a>
     <nav class="mu-appbar">
       <ul class="mu-appbar__list">
-        <li class="mu-appbar-item{{ rn('home') ? ' is-active' : '' }}">
-          <a wire:navigate href="{{ route('home') }}">
-            <i class="mu-appbar-item__icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
-                <path d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
+        <x-mu-appbar-item route="home">
+          <x-slot:icon>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+            </svg>
+          </x-slot:icon>
+          Home
+          <x-slot:dropdown></x-slot:dropdown>
+        </x-mu-appbar-item>
+        <x-mu-appbar-item route="academics">
+          <x-slot:icon>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
+            </svg>
+          </x-slot:icon>
+          Academics
+          <x-slot:dropdown>
+            <x-mu-appbar-dropdown-item route="academics.announcements">
+              Announcements
+            </x-mu-appbar-dropdown-item>
+            <x-mu-appbar-dropdown-item route="academics.announcements">
+              Schedule
+            </x-mu-appbar-dropdown-item>
+            <x-mu-appbar-dropdown-item route="academics.announcements">
+              Curriculum
+            </x-mu-appbar-dropdown-item>
+          </x-slot:dropdown>
+        </x-mu-appbar-item>
+        <x-mu-appbar-item route="enrollment">
+          <x-slot:icon>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+            </svg>
+          </x-slot:icon>
+          Enrollment
+          <x-slot:dropdown></x-slot:dropdown>
+        </x-mu-appbar-item>
+        @staff
+          <x-mu-appbar-item route="admin">
+            <x-slot:icon>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
               </svg>
-            </i>
-            <span class="mu-appbar-item__label">Home</span>
-          </a>
-        </li>
-        <li class="mu-appbar-item{{ rn('academics') ? ' is-active' : '' }}">
-          <a wire:navigate href="{{ route('academics') }}">
-            <i class="mu-appbar-item__icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M11.7 2.805a.75.75 0 0 1 .6 0A60.65 60.65 0 0 1 22.83 8.72a.75.75 0 0 1-.231 1.337 49.948 49.948 0 0 0-9.902 3.912l-.003.002c-.114.06-.227.119-.34.18a.75.75 0 0 1-.707 0A50.88 50.88 0 0 0 7.5 12.173v-.224c0-.131.067-.248.172-.311a54.615 54.615 0 0 1 4.653-2.52.75.75 0 0 0-.65-1.352 56.123 56.123 0 0 0-4.78 2.589 1.858 1.858 0 0 0-.859 1.228 49.803 49.803 0 0 0-4.634-1.527.75.75 0 0 1-.231-1.337A60.653 60.653 0 0 1 11.7 2.805Z" />
-                <path d="M13.06 15.473a48.45 48.45 0 0 1 7.666-3.282c.134 1.414.22 2.843.255 4.284a.75.75 0 0 1-.46.711 47.87 47.87 0 0 0-8.105 4.342.75.75 0 0 1-.832 0 47.87 47.87 0 0 0-8.104-4.342.75.75 0 0 1-.461-.71c.035-1.442.121-2.87.255-4.286.921.304 1.83.634 2.726.99v1.27a1.5 1.5 0 0 0-.14 2.508c-.09.38-.222.753-.397 1.11.452.213.901.434 1.346.66a6.727 6.727 0 0 0 .551-1.607 1.5 1.5 0 0 0 .14-2.67v-.645a48.549 48.549 0 0 1 3.44 1.667 2.25 2.25 0 0 0 2.12 0Z" />
-                <path d="M4.462 19.462c.42-.419.753-.89 1-1.395.453.214.902.435 1.347.662a6.742 6.742 0 0 1-1.286 1.794.75.75 0 0 1-1.06-1.06Z" />
-              </svg>
-            </i>
-            <span class="mu-appbar-item__label">Academics</span>
-          </a>
-        </li>
-        <li class="mu-appbar-item{{ rn('enrollment') ? ' is-active' : '' }}">
-          <a wire:navigate href="{{ route('enrollment') }}">
-            <i class="mu-appbar-item__icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
-                <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
-              </svg>
-
-            </i>
-            <span class="mu-appbar-item__label">Enrollment</span>
-          </a>
-        </li>
-        <li class="mu-appbar-item{{ rn('profile') ? ' is-active' : '' }}">
-          <a wire:navigate href="{{ route('profile') }}">
-            <i class="mu-appbar-item__icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
-              </svg>
-            </i>
-            <span class="mu-appbar-item__label">Profile</span>
-          </a>
-        </li>
+            </x-slot:icon>
+            Admin
+            <x-slot:dropdown>
+              @admin
+              <x-mu-appbar-dropdown-item route="register">
+                Register Users
+              </x-mu-appbar-dropdown-item>
+              @endadmin
+              <x-mu-appbar-dropdown-item route="admin.announcements">
+                Create Announcement
+              </x-mu-appbar-dropdown-item>
+            </x-slot:dropdown>
+          </x-mu-appbar-item>
+        @endstaff
+        <x-mu-appbar-item route="profile">
+          <x-slot:icon>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>
+          </x-slot:icon>
+          Profile
+          <x-slot:dropdown>
+            <x-mu-appbar-dropdown-item route="logout">
+              Logout
+            </x-mu-appbar-dropdown-item>
+          </x-slot:dropdown>
+        </x-mu-appbar-item>
       </ul>
     </nav>
   </div>

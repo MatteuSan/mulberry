@@ -3,7 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Announcement;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,6 +16,31 @@ class DatabaseSeeder extends Seeder
    */
   public function run(): void
   {
-    Announcement::factory(10)->create();
+    DB::table('roles')->insert([
+      'title' => 'Superuser',
+      'slug' => 'superuser',
+      'permissions' => json_encode(['all']),
+    ]);
+    DB::table('roles')->insert([
+      'title' => 'Staff',
+      'slug' => 'staff',
+      'permissions' => json_encode(['staff']),
+    ]);
+    DB::table('roles')->insert([
+      'title' => 'Student',
+      'slug' => 'student',
+      'permissions' => json_encode(['student']),
+    ]);
+    DB::table('users')->insert([
+      'username' => 'matteu',
+      'prefix' => 'Mr.',
+      'first_name' => 'Matthew Gabriel',
+      'middle_name' => 'Galang',
+      'last_name' => 'Hernandez',
+      'email' => 'matt@matteusan.com',
+      'password' => Hash::make('testpassword'),
+      'dob' => '2003-09-15',
+      'role_id' => 1,
+    ]);
   }
 }
