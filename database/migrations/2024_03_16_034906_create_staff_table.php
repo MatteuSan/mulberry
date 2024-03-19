@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->json('courses')->nullable();
             $table->foreignId('department_id')->constrained();
+            $table->boolean('is_dean')->default(false);
             $table->timestamps();
         });
     }

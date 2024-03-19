@@ -18,6 +18,7 @@ return new class extends Migration
             $table->float('score');
             $table->string('grade');
             $table->string('completion_grade');
+            $table->foreignId('graded_by')->constrained('staff'); // For tracking purposes
             $table->timestamps();
         });
     }
