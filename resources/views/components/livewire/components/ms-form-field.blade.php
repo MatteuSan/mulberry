@@ -11,13 +11,10 @@
       <textarea
         class="ms-form-field__input"
         name="{{ $name }}"
-        rows="10"
-        placeholder="a"
-        wire:model="{{ $name }}"
-        @if ($alpineModel) x-model="{{ $alpineModel }}" @endif
-        @if($required) required @endif
-        @if($disabled) disabled @endif
-      >{{ $value ?: old($name) }}</textarea>
+        rows="{{ $rows }}"
+        placeholder="{{ $label }}"
+        {{ $attributes }}
+      >{{ $value }}</textarea>
       @if($helper)
         <span class="ms-form-field__helper">{{ $helper }}</span>
       @endif
@@ -31,11 +28,8 @@
         class="ms-form-field__input"
         placeholder="{{ $label }}"
         name="{{ $name }}"
-        value="{{ $value ?: old($name) }}"
-        wire:model="{{ $name }}"
-        @if ($alpineModel) x-model="{{ $alpineModel }}" @endif
-        @if($required) required @endif
-        @if($disabled) disabled @endif
+        value="{{ $value }}"
+        {{ $attributes }}
       />
       @if($helper)
         <span class="ms-form-field__helper">{{ $helper }}</span>
