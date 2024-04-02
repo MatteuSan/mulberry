@@ -4,21 +4,22 @@ namespace App\Livewire\Admin\Announcement;
 
 use App\Models\Announcement;
 use App\Models\ReadAnnouncement;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class Edit extends Component
 {
   public Announcement $announcement;
+
+  #[Validate('string|required')]
   public string $title;
+
+  #[Validate('string|required')]
   public string $content;
 
   public function edit(): void
   {
-    $this->validate([
-      'title' => 'required',
-      'content' => 'required'
-    ]);
-
+    $this->validate();
     $announcement = Announcement::find($this->announcement->id);
     $announcement->title = $this->title;
     $announcement->content = $this->content;
