@@ -50,10 +50,13 @@
               Announcements
             </x-mu-appbar-dropdown-item>
             <x-mu-appbar-dropdown-item route="academics.announcements">
-              Schedule
+              My Curriculum
             </x-mu-appbar-dropdown-item>
             <x-mu-appbar-dropdown-item route="academics.announcements">
-              Curriculum
+              My Grades
+            </x-mu-appbar-dropdown-item>
+            <x-mu-appbar-dropdown-item route="academics.announcements">
+              My Schedule
             </x-mu-appbar-dropdown-item>
           </x-slot:dropdown>
         </x-mu-appbar-item>
@@ -64,7 +67,20 @@
             </svg>
           </x-slot:icon>
           Enrollment
-          <x-slot:dropdown></x-slot:dropdown>
+          <x-slot:dropdown>
+            <x-mu-appbar-dropdown-item route="academics.announcements">
+              Manage Load
+            </x-mu-appbar-dropdown-item>
+            <x-mu-appbar-dropdown-item route="academics.announcements">
+              Manage Schedule
+            </x-mu-appbar-dropdown-item>
+            <x-mu-appbar-dropdown-item route="academics.announcements">
+              Request Course
+            </x-mu-appbar-dropdown-item>
+            <x-mu-appbar-dropdown-item route="academics.announcements">
+              Support
+            </x-mu-appbar-dropdown-item>
+          </x-slot:dropdown>
         </x-mu-appbar-item>
         @staff
           <x-mu-appbar-item route="admin">
@@ -76,12 +92,12 @@
             Admin
             <x-slot:dropdown>
               @admin
-              <x-mu-appbar-dropdown-item route="register">
-                Register Users
+              <x-mu-appbar-dropdown-item route="admin.manage-users">
+                Manage Users
               </x-mu-appbar-dropdown-item>
               @endadmin
               <x-mu-appbar-dropdown-item route="admin.announcements">
-                Create Announcement
+                Manage Announcements
               </x-mu-appbar-dropdown-item>
             </x-slot:dropdown>
           </x-mu-appbar-item>
@@ -94,6 +110,12 @@
           </x-slot:icon>
           Profile
           <x-slot:dropdown>
+            <x-mu-appbar-dropdown-item route="home">
+              Edit Profile
+            </x-mu-appbar-dropdown-item>
+            <x-mu-appbar-dropdown-item route="home">
+              My Documents
+            </x-mu-appbar-dropdown-item>
             <x-mu-appbar-dropdown-item route="logout">
               Logout
             </x-mu-appbar-dropdown-item>
@@ -103,7 +125,26 @@
     </nav>
   </div>
 </header>
+<div class="flex flow-row wrap-none border-error-200 fill-error-300 ink-error-ink p-md body" wire:offline>
+  <p style="width: 100%; max-width: 1077px;" class="my-none mx-auto">Connection has been lost. You are viewing the content offline.</p>
+</div>
 @yield('content')
 @livewireScripts
+<script type="text/javascript">
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('registerModal', () => ({
+      open: false,
+      toggle() {
+        this.open = ! this.open
+      }
+    }));
+    Alpine.data('announcementModal', () => ({
+      open: false,
+      toggle() {
+        this.open = ! this.open
+      }
+    }));
+  })
+</script>
 </body>
 </html>
