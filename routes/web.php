@@ -17,19 +17,19 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/academics/announcements', [Academics\AnnouncementController::class, 'render'])->name('academics.announcements');
   Route::get('/academics/announcement/{id}', [Academics\AnnouncementController::class, 'renderOnce'])->name('academics.announcements.id');
 
-  Route::get('/enrollment', function () { return view('main.enrollment'); })->name('enrollment');
-  Route::get('/profile', function () { return view('main.profile'); })->name('profile');
+  Route::get('/enrollment', function () { return view('pages.main.enrollment'); })->name('enrollment');
+  Route::get('/profile', function () { return view('pages.main.profile'); })->name('profile');
 
   Route::group(['prefix' => 'admin'], function () {
     Route::get('/', function () {
-      return redirect()->back();
+      return view('pages.admin.index');
     })->name('admin');
     Route::middleware(['staff'])->group(function () {
       Route::get('/announcements', [Admin\AnnouncementController::class, 'render'])->name('admin.announcements');
       Route::get('/announcements/edit/{id}', [Admin\AnnouncementController::class, 'editRender'])->name('admin.announcements.edit');
     });
     Route::middleware(['admin'])->group(function () {
-      Route::get('/manage-users', [Admin\MangeUsersController::class, 'render'])->name('register');
+      Route::get('/manage-users', [Admin\MangeUsersController::class, 'render'])->name('admin.manage-users');
     });
   });
 
