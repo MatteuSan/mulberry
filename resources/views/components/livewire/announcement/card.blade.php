@@ -15,9 +15,9 @@
       <p class="body truncated-1">{{ $content }}</p>
     </a>
     @if($updated_at->diffInDays() - $created_at->diffInDays() >= 1)
-      <small class="small">Updated {{ $updated_at }}. Written by {{ $author }}</small>
+      <small class="small">Updated {{ $timeAgo($updated_at) }}. Written by {{ $author }}</small>
     @else
-      <small class="small">Posted {{ $created_at }} by {{ $author }}</small>
+      <small class="small">Posted {{ $timeAgo($created_at) }} by {{ $author }}</small>
     @endif
   </div>
 </div>

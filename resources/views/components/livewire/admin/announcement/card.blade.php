@@ -3,9 +3,9 @@
     <h4 class="subtitle truncated-1">{{ $title }}</h4>
     <p class="body truncated-1">{{ $content }}</p>
     @if($updated_at->diffInDays() - $created_at->diffInDays() >= 1)
-      <small class="small">Updated {{ $updated_at }}. Written by {{ $author }}</small>
+      <small class="small">Updated {{ $timeAgo($updated_at) }}. Written by {{ $author }}</small>
     @else
-      <small class="small">Posted {{ $created_at }} by {{ $author }}</small>
+      <small class="small">Posted {{ $timeAgo($created_at) }} by {{ $author }}</small>
     @endif
   </div>
   <footer class="flex flex-row wrap-none jc-end gap-sm">
