@@ -13,7 +13,7 @@
       label="Content"
       helper="Markdown is supported"
       required="true"
-      wire:model="content"
+      wire:model.blur="content"
       x-model.blur="content"
     />
     <div class="flex flow-row jc-space-between ai-center gap-sm">
