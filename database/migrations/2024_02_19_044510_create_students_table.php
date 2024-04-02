@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('year');
             $table->foreignId('program_id')->constrained();
             $table->foreignId('role_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->integer('batch');
             $table->json('load')->nullable(); // json of courses loaded for the term
             $table->foreignId('grade_id')->constrained();

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('number')->unique();
             $table->foreignId('role_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->json('courses')->nullable();
             $table->foreignId('department_id')->constrained();
             $table->boolean('is_dean')->default(false);
