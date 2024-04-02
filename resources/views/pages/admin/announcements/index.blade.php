@@ -12,7 +12,7 @@ middleware(['admin']);
 <main class="content-wrap relative" x-data="announcementModal(false)">
   <section class="mu-pathbar">
     <a class="mu-pathbar__item" wire:navigate href="{{ route('home') }}" role="link">Home</a>
-    <a class="mu-pathbar__item" wire:navigate href="{{ route('admin') }}" role="link">Home</a>
+    <a class="mu-pathbar__item" wire:navigate href="{{ route('admin') }}" role="link">Admin</a>
     <span class="mu-pathbar__item">Manage Announcements</span>
   </section>
   <h1 class="supertitle mt-md @medium:mt-xl">Manage Announcements</h1>
