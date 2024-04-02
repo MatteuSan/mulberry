@@ -1,3 +1,9 @@
+@props([
+  'name' => null,
+  'rows' => 10,
+  'width' => 'w-full',
+])
+
 <span class="block {{ $width }}">
   @if($type == 'textarea')
     <label class="ms-form-field @error($name) is-error @enderror">
@@ -23,7 +29,7 @@
       <input
         type="{{ $type }}"
         class="ms-form-field__input"
-        placeholder="a"
+        placeholder="{{ $label }}"
         name="{{ $name }}"
         value="{{ $value ?: old($name) }}"
         wire:model="{{ $name }}"

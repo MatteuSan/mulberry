@@ -40,13 +40,13 @@
         </label>
       </div>
     </section>
-    <div x-bind:class="`flex flow-row ${ page >= 2 ? ' jc-space-between' : 'jc-end' } gap-sm mt-lg`">
-      <button class="ms-button is-outlined" type="submit" @click.prevent="page -= 1" x-show="page >= 2">
-        <span class="ms-button__label">Back</span>
+    <div x-bind:class="`flex flow-row jc-space-between gap-sm mt-lg`">
+      <button class="ms-button is-outlined is-error" @click.prevent="toggle">
+        <span class="ms-button__label">Cancel</span>
       </button>
       <div class="flex flow-row ai-center gap-sm">
-        <button class="ms-button is-outlined is-error" @click.prevent="toggle">
-          <span class="ms-button__label">Cancel</span>
+        <button class="ms-button is-filled" type="submit" @click.prevent="page -= 1" x-show="page >= 2">
+          <span class="ms-button__label">Back</span>
         </button>
         <button class="ms-button is-filled" @click.prevent="page += 1" x-show="page <= 1">
           <span class="ms-button__label">Next</span>
