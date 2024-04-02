@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Announcement;
 use App\Models\Role;
+use Database\Factories\AnnouncementFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -41,6 +42,9 @@ class DatabaseSeeder extends Seeder
       'password' => Hash::make('testpassword'),
       'dob' => '2003-09-15',
       'role_id' => 1,
+      'created_at' => Date::now(),
+      'updated_at' => Date::now(),
     ]);
+    Announcement::factory()->count(7)->create();
   }
 }
