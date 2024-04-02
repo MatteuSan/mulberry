@@ -13,14 +13,14 @@
     <div class="flex flow-column gap-md mt-sm">
       @if($announcements->count() >= 1)
         @foreach($announcements as $announcement)
-          <livewire:announcement.card
+          <livewire:academics.announcement.card
             :id="$announcement->id"
             :title="$announcement->title"
             :content="$announcement->content"
             :created_at="$announcement->created_at"
             :updated_at="$announcement->updated_at"
             :is-unread="!$announcements_read->contains('announcement_id', $announcement->id)"
-            :author="$announcement->user()->first()->name"
+            :author="$announcement->user()->first()->first_name"
           />
         @endforeach
       @else

@@ -1,9 +1,21 @@
+<?php
+use function Laravel\Folio\{middleware};
+
+middleware(['admin']);
+?>
+
 @extends('layouts.main')
 
 @section('title', 'Announcements - Admin')
 
 @section('content')
 <main class="content-wrap relative" x-data="announcementModal(false)">
+  <section class="mu-pathbar">
+    <a class="mu-pathbar__item" wire:navigate href="{{ route('home') }}" role="link">Home</a>
+    <a class="mu-pathbar__item" wire:navigate href="{{ route('admin') }}" role="link">Home</a>
+    <span class="mu-pathbar__item">Manage Announcements</span>
+  </section>
+  <h1 class="supertitle mt-md @medium:mt-xl">Manage Announcements</h1>
   <div class="flex flow-row wrap-none jc-space-between ai-center">
     <h2 class="title mb-sm">All announcements</h2>
     <button class="ms-button is-inverted is-filled" @click="toggle">
@@ -21,9 +33,9 @@
     x-transition.opacity
   >
     <div class="mu-modal" @click.outside="toggle">
-      <livewire:announcement.admin.form />
+      <livewire:admin.announcement.form />
     </div>
   </section>
-  <livewire:announcement.admin.section />
+  <livewire:admin.announcement.section />
 </main>
 @endsection
