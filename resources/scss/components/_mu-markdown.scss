@@ -57,5 +57,21 @@
     a {
       @extend .mu-link;
     }
+
+    pre {
+      width: calc(100% - 1.2rem);
+      margin: 1.2rem 0.6rem;
+      padding: 1.2rem;
+      background: himig.token-get('primary-600');
+      color: himig.token-get('primary-ink');
+      border: 2px solid himig.token-get('primary-400');
+      border-radius: himig.token-get('radius-medium');
+
+      code {
+        font-family: himig.primitive-token-get('family.mono');
+        background: himig.token-get('primary-600');
+        color: himig.token-get('primary-ink');
+      }
+    }
   }
 }
