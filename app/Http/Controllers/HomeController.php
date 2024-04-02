@@ -30,7 +30,7 @@ class HomeController extends Controller
       return $announcement->created_at->diffInMilliseconds() <= auth()->user()->created_at->diffInMilliseconds();
     });
 
-    return view('main.home', [
+    return view('pages.main.index', [
       'announcements' => $announcements->take(2),
       'announcements_all' => $announcements_all,
       'announcements_read' => auth()->user()->readAnnouncements()->get(),

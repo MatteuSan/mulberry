@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Announcement\Admin;
+namespace App\Livewire\Admin\Announcement;
 
 use App\Models\Announcement;
 use App\Models\ReadAnnouncement;
@@ -38,6 +38,6 @@ class Edit extends Component
 
   public function render()
   {
-    return view('livewire.announcement.admin.edit');
+    return view('components.livewire.admin.announcement.edit');
   }
 }

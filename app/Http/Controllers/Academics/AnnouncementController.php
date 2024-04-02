@@ -21,7 +21,7 @@ class AnnouncementController extends Controller
 
     $announcement = Announcement::where('id', $id)->firstOrFail();
 
-    return view('main.academics.announcements.id', [
+    return view('pages.main.academics.announcements.id', [
       'announcement' => $announcement,
       'author' => $announcement->user()->firstOrFail(),
     ]);
@@ -33,7 +33,7 @@ class AnnouncementController extends Controller
       return $announcement->created_at->diffInMilliseconds() <= auth()->user()->created_at->diffInMilliseconds();
     });
 
-    return view('main.academics.announcements.index', [
+    return view('pages.main.academics.announcements.index', [
       'announcements' => $announcements,
       'announcements_read' => auth()->user()->readAnnouncements()->get(),
     ]);

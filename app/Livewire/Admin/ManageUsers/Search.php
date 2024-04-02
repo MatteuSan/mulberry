@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Auth\Admin\ManageUsers;
+namespace App\Livewire\Admin\ManageUsers;
 
 use App\Models\User;
 use Illuminate\View\View;
@@ -30,13 +30,13 @@ class Search extends Component
         $results = User::where("role_id", "=" , "%$filteredQuery%")
           ->limit(10)->get();
       } else {
-        $results = User::where("name", 'like', "%$this->query%")
+        $results = User::where("first_name", 'like', "%$this->query%")
           ->orWhere("email", 'like', "%$this->query%")
           ->limit(10)->get();
       }
     }
 
-    return view('livewire.auth.admin.manage-users.search', [
+    return view('components.livewire.admin.manage-users.search', [
       'results' => $results,
     ]);
   }

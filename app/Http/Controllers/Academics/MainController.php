@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Academics;
 
 use App\Http\Controllers\Controller;
 use App\Models\Announcement;
+use App\Models\Grade;
 use App\Models\ReadAnnouncement;
 use Illuminate\Http\Request;
 
@@ -15,9 +16,10 @@ class MainController extends Controller
       return $announcement->created_at->diffInMilliseconds() <= auth()->user()->created_at->diffInMilliseconds();
     });
 
-    return view('main.academics.index', [
+    return view('pages.main.academics.index', [
       'announcements' => $announcements->take(2),
       'announcements_read' => auth()->user()->readAnnouncements()->get(),
+      'grades' => Grade::with('user')->orderBy('created_at', 'desc')->first()
     ]);
   }
 }

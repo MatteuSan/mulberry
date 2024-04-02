@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Livewire\Announcement\Admin;
+namespace App\Livewire\Admin\Announcement;
 
 use App\Models\Announcement;
 use Illuminate\Support\Carbon;
+use Illuminate\View\View;
 use Livewire\Attributes\Lazy;
 use Livewire\Component;
 
@@ -17,13 +18,9 @@ class Card extends Component
   public Carbon $created_at,
                 $updated_at;
 
-  public function create(): void
+  public function placeholder(): View
   {
-    Announcement::create([
-      'title' => $this->title,
-      'content' => $this->content
-    ]);
-    $this->dispatch('announcements-admin-updated');
+    return view('components.livewire.announcement.skeleton');
   }
 
   public function delete(): void
@@ -32,8 +29,8 @@ class Card extends Component
     $this->dispatch('announcements-admin-updated');
   }
 
-  public function render()
+  public function render(): View
   {
-    return view('livewire.announcement.admin.card');
+    return view('components.livewire.admin.announcement.card');
   }
 }

@@ -13,6 +13,6 @@ class LoginController extends Controller
 {
   public function login_render()
   {
-    return view('auth.login');
+    return view('pages.auth.login');
   }
 }

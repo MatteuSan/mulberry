@@ -8,6 +8,6 @@ class MSSelectField extends Component
 {
     public function render()
     {
-        return view('livewire.components.ms-select-field');
+        return view('components.livewire.components.ms-select-field');
     }
 }

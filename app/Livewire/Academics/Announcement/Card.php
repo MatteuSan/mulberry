@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Announcement;
+namespace App\Livewire\Academics\Announcement;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
@@ -22,11 +22,11 @@ class Card extends Component
 
   public function placeholder(): View
   {
-    return view('livewire.announcement.skeleton');
+    return view('components.livewire.announcement.skeleton');
   }
 
   public function render(): View
   {
-    return view('livewire.announcement.card');
+    return view('components.livewire.announcement.card');
   }
 }

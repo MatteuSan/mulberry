@@ -16,12 +16,13 @@ class LoginForm extends Component
 
   public function login(): void
   {
-    if (!auth()->attempt($this->only('email', 'password'))) back()->with('status', 'Invalid login details.');
+    $this->validate();
+    if (!auth()->attempt($this->only('email', 'password'))) back()->with('message', 'Invalid login details.');
     redirect()->route('home');
   }
 
   public function render(): View
   {
-    return view('livewire.auth.login-form');
+    return view('components.livewire.auth.login-form');
   }
 }

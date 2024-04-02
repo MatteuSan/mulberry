@@ -10,14 +10,14 @@ class AnnouncementController extends Controller
 {
   public function editRender($id)
   {
-    return view('admin.announcements.edit', [
+    return view('pages.admin.announcements.edit', [
       'announcement' => Announcement::where('id', $id)->firstOrFail()
     ]);
   }
 
   public function render()
   {
-    return view('admin.announcements.index', [
+    return view('pages.admin.announcements.index', [
       'announcements' => Announcement::all()
     ]);
   }
