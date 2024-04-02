@@ -1,10 +1,17 @@
-# MapuaBoard
+# Mulberry
 
 An improved web dashboard for Mapuans. Aims to centralize all features previously found in fragmented portions.
 
 ## Features
-- [ ] Student and Faculty authentication using their mymapua account.
-- [ ] Enrollment management without the use of online SFA via request queueing.
+- [ ] Sample Student and Faculty authentication.
+- [ ] Enrollment and load management without the use of online SFA via request queueing.
+- [ ] Schedule management.
+- [ ] Announcements for institution-wide and department-wide concerns.
+- [ ] Support for mobile devices and low internet speeds.
+- [ ] Course and curriculum viewing.
+- [ ] Grades viewing.
+- [ ] Section management.
+- [ ] Profile management.
 
 ## Pre-requisites
 - Node.js
