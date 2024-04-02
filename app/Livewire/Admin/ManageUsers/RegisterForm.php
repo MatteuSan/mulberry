@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Auth\Admin\ManageUsers;
+namespace App\Livewire\Admin\ManageUsers;
 
 use App\Models\Role;
 use App\Models\User;
@@ -89,7 +89,7 @@ class RegisterForm extends Component
 
   public function render(): View
   {
-    return view('livewire.auth.register-form', [
+    return view('components.livewire.admin.manage-users.register-form', [
       'users' => User::all(),
       'roles' => Role::all(),
     ]);
