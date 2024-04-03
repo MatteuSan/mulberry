@@ -29,6 +29,16 @@ class Student extends Model
     return $this->hasMany(Grade::class);
   }
 
+  public function loads(): HasMany
+  {
+    return $this->hasMany(Load::class);
+  }
+
+  public function schedule(): HasMany
+  {
+    return $this->hasMany(Schedule::class);
+  }
+
   public function program(): BelongsTo
   {
     return $this->belongsTo(Program::class);
