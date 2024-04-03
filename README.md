@@ -3,10 +3,11 @@
 An improved web dashboard for Mapuans. Aims to centralize all features previously found in fragmented portions.
 
 ## Features
-- [ ] Sample Student and Faculty authentication.
+- [x] Sample Student and Faculty authentication.
+- [ ] User management.
 - [ ] Enrollment and load management without the use of online SFA via request queueing.
 - [ ] Schedule management.
-- [ ] Announcements for institution-wide and department-wide concerns.
+- [x] Announcements for institution-wide and department-wide concerns.
 - [ ] Support for mobile devices and low internet speeds.
 - [ ] Course and curriculum viewing.
 - [ ] Grades viewing.
