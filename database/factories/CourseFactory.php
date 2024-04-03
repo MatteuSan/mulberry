@@ -17,7 +17,9 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+          'name' => $this->faker->company,
+          'slug' => $this->faker->toLower($this->faker->company),
+          'description' => $this->faker->realText(100)
         ];
     }
 }

@@ -18,7 +18,7 @@ class AnnouncementFactory extends Factory
   {
     return [
       'title' => $this->faker->sentence,
-      'content' => $this->faker->paragraph(rand(3, 7)),
+      'content' => $this->faker->realText,
       'user_id' => 1,
     ];
   }

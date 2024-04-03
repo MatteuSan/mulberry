@@ -4,8 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Announcement;
 use App\Models\Course;
-use App\Models\Role;
-use Database\Factories\AnnouncementFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -105,6 +103,7 @@ class DatabaseSeeder extends Seeder
       'updated_at' => Date::now(),
     ]);
     DB::table('staff')->insert([
+      'number' => 2022103367,
       'role_id' => 1,
       'user_id' => 1,
       'department_id' => 1,
@@ -126,10 +125,10 @@ class DatabaseSeeder extends Seeder
       'updated_at' => Date::now(),
     ]);
     DB::table('students')->insert([
-      'number' => 2022103367,
+      'number' => 2022103368,
       'year' => 1,
       'role_id' => 1,
-      'user_id' => 1,
+      'user_id' => 2,
       'program_id' => 1,
       'batch' => 2022,
       'created_at' => Date::now(),
@@ -150,8 +149,9 @@ class DatabaseSeeder extends Seeder
       'updated_at' => Date::now(),
     ]);
     DB::table('staff')->insert([
+      'number' => 2022103369,
       'role_id' => 2,
-      'user_id' => 1,
+      'user_id' => 3,
       'department_id' => 2,
       'created_at' => Date::now(),
       'updated_at' => Date::now(),
