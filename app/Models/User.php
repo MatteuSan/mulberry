@@ -34,6 +34,13 @@ class User extends Authenticatable
     'password' => 'hashed',
   ];
 
+  public function fullName(bool $hasMiddle = false, bool $hasPrefix = false, bool $hasSuffix = false): string {
+    $prefix = $hasPrefix ? $this->prefix . ' ' : '';
+    $middleName = $hasMiddle ? $this->middle_name : '';
+    $suffix = $hasSuffix ? ' ' . $this->suffix : '';
+    return "$prefix$this->first_name $middleName $this->last_name$suffix";
+  }
+
   public function announcements(): HasMany
   {
     return $this->hasMany(Announcement::class);

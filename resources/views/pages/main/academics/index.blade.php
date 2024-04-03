@@ -21,7 +21,7 @@
               :created_at="$announcement->created_at"
               :updated_at="$announcement->updated_at"
               :is-unread="!$announcements_read->contains('announcement_id', $announcement->id)"
-              :author="$announcement->user()->first()->first_name"
+              :author="$announcement->user()->first()->fullName()"
             />
           @endforeach
           @if($announcements->count() >=3)

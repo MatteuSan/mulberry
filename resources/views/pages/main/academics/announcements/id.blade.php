@@ -11,7 +11,7 @@
       <span class="mu-pathbar__item">{{ $announcement->title }}</span>
     </section>
     <h1 class="supertitle mt-md @medium:mt-xl">{{ $announcement->title }}</h1>
-    <h2 class="mu-subtitle mt-sm">Posted on {{ $announcement->created_at->format('F j, Y') }} by {{ $author->name }}</h2>
+    <h2 class="mu-subtitle mt-sm">Posted on {{ $announcement->created_at->format('F j, Y') }} by {{ $author->fullName() }}</h2>
     <section class="markdown mb-xl">
       {!! Str::markdown($announcement->content, ['allow_unsafe_links' => false]) !!}
     </section>
