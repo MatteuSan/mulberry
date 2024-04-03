@@ -5,6 +5,7 @@ namespace App\Livewire\Auth;
 use Illuminate\View\View;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use function Symfony\Component\Translation\t;
 
 class LoginForm extends Component
 {
@@ -14,10 +15,12 @@ class LoginForm extends Component
   #[Validate('required|min:4')]
   public string $password = '';
 
+  public bool $remember = false;
+
   public function login(): void
   {
     $this->validate();
-    if (!auth()->attempt($this->only('email', 'password'))) back()->with('message', 'Invalid login details.');
+    if (!auth()->attempt($this->only('email', 'password'), $this->remember)) back()->with('message', 'Invalid login details.');
     redirect()->route('home');
   }
 
