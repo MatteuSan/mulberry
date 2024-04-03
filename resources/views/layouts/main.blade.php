@@ -50,7 +50,7 @@
               Announcements
             </x-mu-appbar-dropdown-item>
             <x-mu-appbar-dropdown-item route="academics.announcements">
-              My Curriculum
+              My Load
             </x-mu-appbar-dropdown-item>
             <x-mu-appbar-dropdown-item route="academics.announcements">
               My Grades
