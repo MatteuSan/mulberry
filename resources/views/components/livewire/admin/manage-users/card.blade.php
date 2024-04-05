@@ -9,7 +9,7 @@
     <footer class="flex flex-row wrap-none jc-end gap-sm">
       <a
         wire:navigate
-        href="{{ route('admin.announcements.edit', ['id' => $id]) }}"
+        href="{{ route('admin.manage-users.edit', ['id' => $id]) }}"
         aria-label="Edit announcement number {{ $id }}."
         class="ms-button is-filled is-small is-inverted" role="link"
       >

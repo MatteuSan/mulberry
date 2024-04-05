@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::middleware(['admin'])->group(function () {
       Route::get('/manage-users', [Admin\MangeUsersController::class, 'render'])->name('admin.manage-users');
+      Route::get('/manage-users/user/edit/{id}', [Admin\MangeUsersController::class, 'editRender'])->name('admin.manage-users.edit');
     });
   });
 
