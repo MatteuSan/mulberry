@@ -2,8 +2,11 @@
 
 namespace App\Livewire\Admin\ManageUsers;
 
+use App\Models\Program;
 use App\Models\Role;
+use App\Models\Student;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use Livewire\Attributes\Validate;
@@ -14,19 +17,19 @@ class RegisterForm extends Component
   #[Validate('required|string')]
   public string $username = '';
 
-  #[Validate('required|string')]
-  public string $prefix = '';
+  #[Validate('string|nullable')]
+  public string|null $prefix;
   #[Validate('required|string')]
   public string $firstName = '';
 
-  #[Validate('string')]
-  public string $middleName = '';
+  #[Validate('string|nullable')]
+  public string|null $middleName;
 
   #[Validate('required|string')]
   public string $lastName = '';
 
-  #[Validate('string')]
-  public string $suffix = '';
+  #[Validate('string|nullable')]
+  public string|null $suffix;
 
   #[Validate('required|string')]
   public string $name = '';
@@ -34,64 +37,55 @@ class RegisterForm extends Component
   #[Validate('required|email|unique:users')]
   public string $email = '';
 
-  #[Validate('required')]
+  #[Validate('required|string')]
   public string $password = '';
 
-  #[Validate('required')]
+  #[Validate('required|string')]
   public string $dob = '';
 
-  #[Validate('required')]
+  #[Validate('required|int')]
   public int $batch;
 
-  #[Validate('required')]
-  public string $role_id = '';
+  #[Validate('required|string')]
+  public string $role_id;
+
+  #[Validate('required|string')]
+  public string $program_id;
 
   public function register(): void
   {
-    $role_id = match ($this->role_id) {
-      'superuser' => 1,
-      'staff' => 2,
-      'student' => 3
-    };
-
+    $this->validate();
     User::create([
-      'name' => $this->name,
+      'username' => $this->username,
+      'prefix' => $this->prefix,
+      'first_name' => $this->firstName,
+      'middle_name' => $this->middleName,
+      'last_name' => $this->lastName,
+      'suffix' => $this->suffix,
       'email' => $this->email,
       'password' => Hash::make($this->password),
-      'role_id' => $role_id,
+      'role_id' => Role::where('slug', $this->role_id)->first()->id,
+      'dob' => $this->dob,
     ]);
 
-    if ($role_id === 2) {
-      $user = User::where('email', $this->email)->first();
-      $user->staff()->create([
-        'username' => $this->username,
-        'prefix' => $this->prefix,
-        'first_name' => $this->firstName,
-        'middle_name' => $this->middleName,
-        'last_name' => $this->lastName,
-        'suffix' => $this->suffix,
-      ]);
-    } else if ($role_id === 3) {
-      $user = User::where('email', $this->email)->first();
-      $user->student()->create([
-        'username' => $this->username,
-        'prefix' => $this->prefix,
-        'first_name' => $this->firstName,
-        'middle_name' => $this->middleName,
-        'last_name' => $this->lastName,
-        'suffix' => $this->suffix,
+    if ($this->role_id == 'student') {
+      Student::create([
+        'number' => $this->batch . str_replace('-', '', $this->dob),
+        'year' => Carbon::today()->year - $this->batch,
+        'user_id' => User::where('username', $this->username)->first()->id,
+        'batch' => $this->batch,
+        'program_id' => Program::where('slug', $this->program_id)->first()->id,
       ]);
     }
 
-    auth()->attempt($this->only('email', 'password'));
-    redirect()->route('home');
+    redirect()->route('admin.manage-users');
   }
 
   public function render(): View
   {
     return view('components.livewire.admin.manage-users.register-form', [
-      'users' => User::all(),
       'roles' => Role::all(),
+      'programs' => Program::all(),
     ]);
   }
 }
