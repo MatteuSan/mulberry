@@ -1,9 +1,3 @@
-<?php
-use function Laravel\Folio\name;
-
-name('login');
-?>
-
 @extends('layouts.auth')
 
 @section('title', 'Login')

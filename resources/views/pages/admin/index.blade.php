@@ -1,9 +1,3 @@
-<?php
-use function Laravel\Folio\{middleware};
-
-middleware(['admin']);
-?>
-
 @extends('layouts.main')
 
 @section('title', 'Admin')
