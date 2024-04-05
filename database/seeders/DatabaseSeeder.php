@@ -127,7 +127,6 @@ class DatabaseSeeder extends Seeder
     DB::table('students')->insert([
       'number' => 2022103368,
       'year' => 1,
-      'role_id' => 1,
       'user_id' => 2,
       'program_id' => 1,
       'batch' => 2022,
