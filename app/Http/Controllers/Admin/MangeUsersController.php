@@ -10,6 +10,13 @@ use Illuminate\View\View;
 
 class MangeUsersController extends Controller
 {
+  public function editRender($id)
+  {
+    return view('pages.admin.manage-users.edit', [
+      'user' => User::where('id', $id)->firstOrFail()
+    ]);
+  }
+
   public function render(): View
   {
     return view('pages.admin.manage-users.index', [
