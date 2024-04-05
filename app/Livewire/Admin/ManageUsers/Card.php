@@ -10,11 +10,11 @@ use Livewire\Component;
 class Card extends Component
 {
   public int $id;
-  public string $prefix,
-                $firstName,
+  public string $firstName,
                 $lastName,
                 $role;
-  public string|null $suffix,
+  public string|null $prefix,
+                     $suffix,
                      $middleName;
   public Carbon $created_at,
                 $updated_at;
