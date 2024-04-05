@@ -16,6 +16,7 @@ class Student extends Model
     'year',
     'program_id',
     'user_id',
+    'batch',
     'load',
   ];
 
