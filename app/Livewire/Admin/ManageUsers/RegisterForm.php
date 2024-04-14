@@ -2,8 +2,10 @@
 
 namespace App\Livewire\Admin\ManageUsers;
 
+use App\Models\Department;
 use App\Models\Program;
 use App\Models\Role;
+use App\Models\Staff;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Support\Carbon;
@@ -31,26 +33,26 @@ class RegisterForm extends Component
   #[Validate('string|nullable')]
   public string|null $suffix;
 
-  #[Validate('required|string')]
-  public string $name = '';
-
   #[Validate('required|email|unique:users')]
   public string $email = '';
 
   #[Validate('required|string')]
   public string $password = '';
 
-  #[Validate('required|string')]
+  #[Validate('required|string', as: 'date of birth')]
   public string $dob = '';
 
-  #[Validate('required|int')]
-  public int $batch;
-
   #[Validate('required|string')]
-  public string $role_id;
+  public string $role = 'superuser';
 
-  #[Validate('required|string')]
-  public string $program_id;
+  #[Validate('nullable|int')]
+  public int|null $batch;
+
+  #[Validate('nullable|string')]
+  public string|null $program;
+
+  #[Validate('nullable|string')]
+  public string|null $department;
 
   public function register(): void
   {
@@ -64,21 +66,28 @@ class RegisterForm extends Component
       'suffix' => $this->suffix,
       'email' => $this->email,
       'password' => Hash::make($this->password),
-      'role_id' => Role::where('slug', $this->role_id)->first()->id,
       'dob' => $this->dob,
+      'role_id' => Role::where('slug', $this->role)->first()->id
     ]);
 
-    if ($this->role_id == 'student') {
+    if ($this->role === 'student') {
       Student::create([
         'number' => $this->batch . str_replace('-', '', $this->dob),
         'year' => Carbon::today()->year - $this->batch,
-        'user_id' => User::where('username', $this->username)->first()->id,
         'batch' => $this->batch,
-        'program_id' => Program::where('slug', $this->program_id)->first()->id,
+        'user_id' => User::where('email', $this->email)->first()->id,
+        'program_id' => Program::where('slug', $this->program)->first()->id,
+      ]);
+    } else {
+      Staff::create([
+        'number' => Carbon::now()->year . str_replace('-', '', $this->dob),
+        'user_id' => User::where('email', $this->email)->first()->id,
+        'role_id' => Role::where('slug', $this->role)->first()->id,
+        'department_id' => Department::where('slug', $this->department)->first()->id
       ]);
     }
 
-    redirect()->route('admin.manage-users');
+    $this->dispatch('user-list-updated');
   }
 
   public function render(): View
@@ -86,6 +95,7 @@ class RegisterForm extends Component
     return view('components.livewire.admin.manage-users.register-form', [
       'roles' => Role::all(),
       'programs' => Program::all(),
+      'departments' => Department::all()
     ]);
   }
 }
