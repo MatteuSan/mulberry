@@ -1,4 +1,6 @@
-<section class="w-full fill-surface-200 ink-surface-ink p-lg @medium:p-xl r-lg my-xl" x-data="{ role: '' }">
+<section
+  class="w-full fill-surface-200 ink-surface-ink p-lg @medium:p-xl r-lg my-xl"
+  x-data="{ role: '{{ $user->role->slug }}', department: '{{ $user->staff?->department->slug }}', program: '{{ $user->student?->program->slug }}' }">
   <h2 class="title mb-md">Edit user</h2>
   <form class="flex flow-column gap-md" wire:submit="edit">
     <div class="flex flow-column gap-sm">
@@ -15,41 +17,51 @@
     <x-ms-form-field wire:model.blur="email" name="email" label="Email" required="true" type="email" value="{{ $user->email }}" />
     <x-ms-form-field wire:model.blur="dob" name="dob" label="Date of birth" required="true" type="text" helper="(yyyy-mm-dd)" value="{{ $user->dob }}" />
 
-    <label class="ms-select-field @error('role_id') is-error @enderror">
+    <label class="ms-select-field @error('role') is-error @enderror">
       <span class="ms-select-field__label">Role</span>
-      <select name="role_id" class="ms-select-field__input" wire:model="role_id" x-model="role" required>
+      <select name="role" class="ms-select-field__input" wire:model="role" x-model="role" required>
         @foreach($roles as $role)
           <option value="{{ $role->slug }}">{{ $role->title }}</option>
         @endforeach
       </select>
-      @error('role_id') <span class="ms-form-field__helper">{{ $message }}</span> @enderror
+      @error('role') <span class="ms-form-field__helper">{{ $message }}</span> @enderror
     </label>
 
-    @if($user->role_id == 3)
-      <div class="flex flow-row wrap-none gap-sm jc-space-between ai-center" x-show="role == 'student'">
-        <x-ms-form-field wire:model.blur="batch" name="batch" type="text" label="Batch" required="true" value="{{ $user->student()->first()->batch }}"/>
-        <label class="ms-select-field min-h-full @error('program_id') is-error @enderror">
-          <span class="ms-select-field__label">Program</span>
-          <select name="program_id" class="ms-select-field__input" wire:model="program_id" required>
-            @foreach($programs as $program)
-              <option value="{{ $program->slug }}">{{ $program->title }}</option>
-            @endforeach
-          </select>
-          @error('program_id') <span class="ms-form-field__helper">{{ $message }}</span> @enderror
-        </label>
-      </div>
-    @endif
+    <div class="flex flow-row wrap-none gap-sm jc-space-between ai-center" x-show="role == 'student'">
+      <x-ms-form-field wire:model.blur="batch" name="batch" type="text" label="Batch" required="true" value="{{ $user?->student?->batch }}"/>
+      <label class="ms-select-field min-h-full @error('program') is-error @enderror">
+        <span class="ms-select-field__label">Program</span>
+        <select name="program" class="ms-select-field__input" wire:model="program" x-model="program">
+          @foreach($programs as $program)
+            <option value="{{ $program->slug }}">{{ $program->title }}</option>
+          @endforeach
+        </select>
+        @error('program') <span class="ms-form-field__helper">{{ $message }}</span> @enderror
+      </label>
+    </div>
+
+    <div class="flex flow-row wrap-none gap-sm jc-space-between ai-center" x-show="role == 'staff' || role == 'superuser'">
+      <label class="ms-select-field min-h-full @error('department') is-error @enderror">
+        <span class="ms-select-field__label">Department</span>
+        <select name="department" class="ms-select-field__input" wire:model="department" x-model="department">
+          @foreach($departments as $department)
+            <option value="{{ $department->slug }}">{{ $department->title }}</option>
+          @endforeach
+        </select>
+        @error('department') <span class="ms-form-field__helper">{{ $message }}</span> @enderror
+      </label>
+    </div>
 
     <div class="flex flow-row jc-space-between gap-sm">
       <a wire:navigate href="{{ route('admin.manage-users') }}" class="ms-button is-outlined is-error">
         <span class="ms-button__label">Cancel</span>
       </a>
       <div class="flex flow-row wrap-none ai-center gap-sm">
+        <button class="ms-button is-filled is-error" type="button" wire:click="delete" wire:confirm="Are you sure you want to delete this user? This action cannot be undone.">
+          <span class="ms-button__label">Delete</span>
+        </button>
         <button class="ms-button is-filled is-inverted" type="submit">
           <span class="ms-button__label">Save</span>
-        </button>
-        <button class="ms-button is-filled is-error" type="button" wire:click="delete">
-          <span class="ms-button__label">Delete</span>
         </button>
       </div>
     </div>

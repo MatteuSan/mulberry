@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Admin\ManageUsers;
 
+use App\Models\Department;
 use App\Models\Program;
 use App\Models\Role;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\View\View;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -26,26 +28,30 @@ class Edit extends Component
   public string $lastName;
 
   #[Validate('string|nullable')]
-  public string|null $suffix;
+  public string|null $suffix = '';
 
   #[Validate('string|required|email')]
   public string $email;
 
   #[Validate('string|required')]
-  public string $role;
-
-  #[Validate('string|required')]
-  public string $program;
-
-  #[Validate('string')]
   public string $dob;
 
+  #[Validate('string|required')]
+  public string $role;
+
   #[Validate('integer|nullable')]
-  public int|null $batch;
+  public int|null $batch = 0000;
+
+  #[Validate('string|nullable')]
+  public string|null $program;
+
+  #[Validate('string|nullable')]
+  public string|null $department;
 
   public function mount(): void
   {
     $this->user = User::find($this->user->id);
+    $this->department = $this->user->staff?->department?->slug;
   }
 
   public function edit(): void
@@ -58,12 +64,42 @@ class Edit extends Component
     $user->last_name = $this->lastName;
     $user->suffix = $this->suffix;
     $user->email = $this->email;
-    $user->role_id = $this->role;
+    $user->role_id = Role::where('slug', $this->role)->first()->id;
     $user->dob = $this->dob;
-    if($this->role == 'student') {
-      $this->user->student()->first()->batch = $this->batch;
-      $this->user->student()->first()->program_id = Program::where('slug', $this->program)->first()->id;
+
+    if ($this->role == 'student') {
+      if (!$user->student) {
+        $user->student()->create([
+          'user_id' => $user->id,
+          'number' => $this->batch . str_replace('-', '', $this->dob),
+          'batch' => $this->batch,
+          'year' => Carbon::now()->year - $this->batch,
+          'program_id' => Program::where('slug', $this->program)->first()->id,
+        ]);
+      } else {
+        $user->student->batch = $this->batch;
+        $user->student->program_id = Program::where('slug', $this->program)->first()->id;
+      }
+    } else {
+      if (!$user->staff) {
+        $user->staff()->create([
+          'user_id' => $user->id,
+          'number' => $this->batch . str_replace('-', '', $this->dob),
+          'role_id' => Role::where('slug', $this->role)->first()->id,
+          'department_id' => Department::where('slug', $this->department)->first()->id,
+        ]);
+      } else {
+        $user->staff->department_id = Department::where('slug', $this->department)->first()->id;
+      }
     }
+
+    $user->save();
+    redirect(route('admin.manage-users'));
+  }
+
+  public function delete(): void
+  {
+    User::destroy($this->user->id);
     redirect(route('admin.manage-users'));
   }
 
@@ -72,6 +108,7 @@ class Edit extends Component
     return view('components.livewire.admin.manage-users.edit', [
       'roles' => Role::all(),
       'programs' => Program::all(),
+      'departments' => Department::all(),
     ]);
   }
 }
