@@ -13,9 +13,9 @@
       :suffix="$user->suffix"
       :email="$user->email"
       :dob="$user->dob"
-      :batch="$user->student()->first()->batch"
-      :program="$user->student()->first()->program()->first()->title"
-      :role="$user->role_id"
+      :batch="$user->student?->batch"
+      :program="$user->student?->program?->slug"
+      :role="$user->role->slug"
     />
   </main>
 @endsection
