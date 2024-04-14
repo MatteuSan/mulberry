@@ -16,6 +16,12 @@ class Section extends Component
     $this->announcements = Announcement::orderBy('updated_at', 'desc')->get();
   }
 
+  #[On('announcement-created')]
+  public function updateSection(): void
+  {
+    $this->announcements = Announcement::orderBy('updated_at', 'desc')->get();
+  }
+
   public function render(): View
   {
     return view('components.livewire.admin.announcement.section', [
