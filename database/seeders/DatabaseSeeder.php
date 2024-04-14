@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\Announcement;
 use App\Models\Course;
+use App\Models\Staff;
+use App\Models\Student;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -157,7 +160,14 @@ class DatabaseSeeder extends Seeder
     ]);
 
     // Others
-    Announcement::factory(7)->create();
+    User::factory(5)
+      ->has(Staff::factory(1), 'staff')
+      ->has(Announcement::factory(2), 'announcements')
+      ->create();
+    User::factory(5)
+      ->has(Student::factory(1), 'student')
+      ->create();
+    // Announcement::factory(7)->create();
     Course::factory(24)->create();
   }
 }
