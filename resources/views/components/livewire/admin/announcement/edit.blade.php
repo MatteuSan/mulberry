@@ -8,11 +8,11 @@
         <span class="ms-button__label">Cancel</span>
       </a>
       <div class="flex flow-row wrap-none ai-center gap-sm">
-        <button class="ms-button is-filled is-inverted" type="submit">
-          <span class="ms-button__label">Save</span>
-        </button>
         <button class="ms-button is-filled is-error" type="button" wire:click="delete">
           <span class="ms-button__label">Delete</span>
+        </button>
+        <button class="ms-button is-filled is-inverted" type="submit">
+          <span class="ms-button__label">Save</span>
         </button>
       </div>
     </div>
