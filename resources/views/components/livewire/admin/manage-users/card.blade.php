@@ -19,7 +19,7 @@
         class="ms-button is-outlined is-small is-filled is-error"
         type="button"
         wire:click="delete"
-        wire:confirm="Are you sure you want to delete this announcement? This action cannot be undone."
+        wire:confirm="Are you sure you want to delete this user? This action cannot be undone."
         wire:loading.attr="disabled"
       >
         Delete

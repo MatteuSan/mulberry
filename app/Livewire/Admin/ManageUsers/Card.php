@@ -27,6 +27,7 @@ class Card extends Component
   public function delete(): void
   {
     User::destroy($this->id);
+    $this->dispatch('user-list-updated');
   }
 
   public function render(): View
