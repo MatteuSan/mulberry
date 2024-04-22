@@ -36,12 +36,12 @@
             <span wire:key="paginator-{{ $paginator->getPageName() }}-page{{ $page }}">
               @if ($page == $paginator->currentPage())
                 <span aria-current="page">
-                  <button class="ms-button is-small is-filled">
+                  <button class="ms-button is-small is-filled is-box">
                     <span class="ms-button__label">{{ $page }}</span>
                   </button>
                 </span>
               @else
-                <button type="button" wire:click="gotoPage({{ $page }}, '{{ $paginator->getPageName() }}')" x-on:click="{{ $scrollIntoViewJsSnippet }}" class="ms-button is-small" aria-label="{{ __('Go to page :page', ['page' => $page]) }}">
+                <button type="button" wire:click="gotoPage({{ $page }}, '{{ $paginator->getPageName() }}')" x-on:click="{{ $scrollIntoViewJsSnippet }}" class="ms-button is-small is-box" aria-label="{{ __('Go to page :page', ['page' => $page]) }}">
                   <span class="ms-button__label">{{ $page }}</span>
                 </button>
               @endif
