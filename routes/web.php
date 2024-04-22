@@ -23,6 +23,8 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/enrollment/load', [Enrollment\LoadController::class, 'render'])->name('enrollment.load');
 
   Route::get('/profile', [Profile\MainController::class, 'render'])->name('profile');
+  Route::get('/profile/edit', [Profile\ProfileController::class, 'render'])->name('profile.edit');
+  Route::get('/profile/documents', [Profile\DocumentController::class, 'render'])->name('profile.documents');
 
   Route::group(['prefix' => 'admin'], function () {
     Route::get('/', function () {
