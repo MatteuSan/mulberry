@@ -218,17 +218,23 @@
       ),
     ));
   }
+
   @include ms-form-field.render(
     $color: (
       fill: (
         default: 'surface-400',
         hover: 'warning-200',
-        focus: 'warning-200'
+        focus: 'warning-200',
+        disabled: 'ms-grey.400'
+      ),
+      ink: (
+        disabled: 'ms-grey.200'
       ),
       border: (
         default: 'surface-600',
         hover: 'warning-alpha-600',
         focus: 'warning-400',
+        disabled: 'ms-grey.300'
       )
     )
   );
@@ -237,6 +243,7 @@
       --ms-form-field-fill: #{himig.token-get('error-200')};
     }
   }
+
   @include ms-list.render(
     $struct: (
       width: (
