@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Announcement;
 
 use App\Models\Announcement;
+use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -28,7 +29,7 @@ class Form extends Component
     $this->dispatch('announcement-created');
   }
 
-  public function render()
+  public function render(): View
   {
     return view('components.livewire.admin.announcement.form');
   }
