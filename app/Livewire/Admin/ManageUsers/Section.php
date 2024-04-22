@@ -45,7 +45,7 @@ class Section extends Component
   {
     $users = User::when($this->roleFilter !== 'all', fn (Builder $query) => $query->where('role_id', $this->roleFilter))
       ->when($this->searchQuery !== '', fn (Builder $query) => $query->where(DB::raw("CONCAT(first_name, ' ', middle_name, ' ', last_name)"), 'like', "%$this->searchQuery%"))
-      ->paginate(15);
+      ->paginate(10);
 
     return view('components.livewire.admin.manage-users.section', [
       'users' => $users,
