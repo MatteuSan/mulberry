@@ -7,9 +7,9 @@
     <section class="mu-pathbar">
       <span class="mu-pathbar__item" style="color: rgba(0, 0, 0, 0)">Home</span>
     </section>
-    <h1 class="supertitle mt-md @medium:mt-xl">Welcome, Mapuan!</h1>
+    <h1 class="supertitle mt-md @medium:mt-xl">Welcome, {{ auth()->user()->first_name }}!</h1>
     <section class="grid cols-1 @large:cols-3 gap-lg">
-      <section id="profile">
+      <section id="links">
         <h2 class="title mt-sm mb-md">Quick Links</h2>
         <ul class="flex flow-row wrap gap-sm" style="list-style: none">
           <li>
