@@ -17,7 +17,7 @@ class MainController extends Controller
     });
 
     return view('pages.main.academics.index', [
-      'announcements' => $announcements->take(2),
+      'announcements' => $announcements,
       'announcements_read' => auth()->user()->readAnnouncements()->get(),
       'grades' => Grade::with('user')->orderBy('created_at', 'desc')->first()
     ]);
