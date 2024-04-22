@@ -17,8 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->longText('description');
             $table->json('pre_requisites')->nullable();
-            // TODO: We'll see if we need this...
-            // $table->json('applicable_programs')->default(json_encode(['all']));
+            $table->integer('units');
             $table->timestamps();
         });
     }

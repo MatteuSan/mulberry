@@ -19,7 +19,8 @@ class CourseFactory extends Factory
         return [
           'name' => $this->faker->company,
           'slug' => $this->faker->toLower($this->faker->company),
-          'description' => $this->faker->realText(100)
+          'description' => $this->faker->realText(100),
+          'units' => $this->faker->numberBetween(1, 3),
         ];
     }
 }

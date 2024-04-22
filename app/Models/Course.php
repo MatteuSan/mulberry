@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'slug',
-        'description',
-        'pre_requisites',
-    ];
+  protected $fillable = [
+    'name',
+    'slug',
+    'description',
+    'pre_requisites',
+    'units'
+  ];
 }
