@@ -104,10 +104,10 @@
           </x-slot:icon>
           Profile
           <x-slot:dropdown>
-            <x-mu-appbar-dropdown-item route="home">
+            <x-mu-appbar-dropdown-item route="profile.edit">
               Edit Profile
             </x-mu-appbar-dropdown-item>
-            <x-mu-appbar-dropdown-item route="home">
+            <x-mu-appbar-dropdown-item route="profile.documents">
               My Documents
             </x-mu-appbar-dropdown-item>
             <x-mu-appbar-dropdown-item route="logout">
