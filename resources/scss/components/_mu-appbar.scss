@@ -17,13 +17,17 @@
 
     .mu-appbar__list {
       display: himig.key-create('appbar-list-display', grid);
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(#{himig.key-create('appbar-item-count', 4)}, 1fr);
       align-items: center;
       list-style: none;
       gap: himig.to-rem(10px);
 
       @include himig.breakpoint-create('medium') {
         @include himig.key-bind('appbar-list-display', flex);
+      }
+
+      &.is-superuser {
+        @include himig.key-bind('appbar-item-count', 5);
       }
 
       .mu-appbar-item {

@@ -59,8 +59,9 @@
     ),
   )
 ) {
-  .content-wrap {
+  main.content-wrap {
     width: calc(100% - 50px) !important;
+    padding-block-end: 7em !important;
 
     &.is-auth {
       max-width: 670px;
@@ -180,6 +181,13 @@
       height: (
         max: 100%
       )
+    ));
+  }
+
+  @include ms-button.extend('box.small') {
+    @include ms-button.struct((
+      width: (min: 30px),
+      padding: 0.3rem !important
     ));
   }
 
