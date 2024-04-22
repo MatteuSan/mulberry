@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Load extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = [
-        'student_id',
-        'course_id',
-    ];
+  protected $fillable = [
+    'student_id',
+    'course_id',
+  ];
 
   public function student(): BelongsTo
   {
