@@ -66,9 +66,11 @@
           </section>
         @endif
       </section>
-      <section id="schedule" class="@large:start-2 @large:end-3">
-        <h2 class="title mt-sm mb-md">My Schedule</h2>
-      </section>
+      @visible('student')
+        <section id="schedule" class="@large:start-2 @large:end-3">
+          <h2 class="title mt-sm mb-md">My Schedule</h2>
+        </section>
+      @endvisible
     </section>
   </main>
 @endsection

@@ -28,7 +28,7 @@
       <img src="{{ asset('/img/mapua-logo.png') }}" alt="logo" class="mu-logo">
     </a>
     <nav class="mu-appbar">
-      <ul class="mu-appbar__list">
+      <ul class="mu-appbar__list{{ auth()->user()->isSuperuser() ? ' is-superuser' : '' }}">
         <x-mu-appbar-item route="home">
           <x-slot:icon>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -49,12 +49,19 @@
             <x-mu-appbar-dropdown-item route="academics.announcements">
               Announcements
             </x-mu-appbar-dropdown-item>
-            <x-mu-appbar-dropdown-item route="academics.announcements">
-              My Grades
-            </x-mu-appbar-dropdown-item>
-            <x-mu-appbar-dropdown-item route="academics.announcements">
-              My Schedule
-            </x-mu-appbar-dropdown-item>
+            @if(auth()->user()->isStaff() || auth()->user()->isSuperuser())
+              <x-mu-appbar-dropdown-item route="admin.announcements">
+                Manage Announcements
+              </x-mu-appbar-dropdown-item>
+            @endif
+            @if(auth()->user()->isStudent())
+              <x-mu-appbar-dropdown-item route="academics.announcements">
+                My Grades
+              </x-mu-appbar-dropdown-item>
+              <x-mu-appbar-dropdown-item route="academics.announcements">
+                My Schedule
+              </x-mu-appbar-dropdown-item>
+            @endif
           </x-slot:dropdown>
         </x-mu-appbar-item>
         <x-mu-appbar-item route="enrollment">
@@ -65,18 +72,28 @@
           </x-slot:icon>
           Enrollment
           <x-slot:dropdown>
-            <x-mu-appbar-dropdown-item route="enrollment.load">
-              My Load
-            </x-mu-appbar-dropdown-item>
-            <x-mu-appbar-dropdown-item route="enrollment">
-              Request A Course
-            </x-mu-appbar-dropdown-item>
-            <x-mu-appbar-dropdown-item route="enrollment">
-              Further Support
-            </x-mu-appbar-dropdown-item>
+            @if(auth()->user()->isStudent())
+              <x-mu-appbar-dropdown-item route="enrollment.load">
+                My Load
+              </x-mu-appbar-dropdown-item>
+              <x-mu-appbar-dropdown-item route="enrollment">
+                Request A Course
+              </x-mu-appbar-dropdown-item>
+              <x-mu-appbar-dropdown-item route="enrollment">
+                Further Support
+              </x-mu-appbar-dropdown-item>
+            @endif
+            @if(auth()->user()->isStaff() || auth()->user()->isSuperuser())
+              <x-mu-appbar-dropdown-item route="enrollment">
+                 Manage Load Requests
+              </x-mu-appbar-dropdown-item>
+                <x-mu-appbar-dropdown-item route="enrollment">
+                  Manage Course Requests
+                </x-mu-appbar-dropdown-item>
+            @endif
           </x-slot:dropdown>
         </x-mu-appbar-item>
-        @if(auth()->user()->isStaff() || auth()->user()->isSuperuser())
+        @if(auth()->user()->isSuperuser())
           <x-mu-appbar-item route="admin">
             <x-slot:icon>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -85,13 +102,8 @@
             </x-slot:icon>
             Admin
             <x-slot:dropdown>
-              @if(auth()->user()->isSuperuser())
               <x-mu-appbar-dropdown-item route="admin.manage-users">
                 Manage Users
-              </x-mu-appbar-dropdown-item>
-              @endif
-              <x-mu-appbar-dropdown-item route="admin.announcements">
-                Manage Announcements
               </x-mu-appbar-dropdown-item>
             </x-slot:dropdown>
           </x-mu-appbar-item>
