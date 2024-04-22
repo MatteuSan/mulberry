@@ -12,7 +12,8 @@ class MSButton extends Component
   public function __construct(
     public string $type = '',
     public string $link = '',
-    public string $nativeType = ''
+    public string $nativeType = '',
+    public bool $isDisabled = false
   ) {}
 
   private function isRouteName(string $routeName): bool
