@@ -16,7 +16,7 @@
           @if($user->student) <li class="ms-list__item">{{ $user->student->number }}</li> @endif
           @if($user->staff) <li class="ms-list__item">{{ $user->staff->number }}</li> @endif
         </ul>
-        <x-ms-button link="/edit" type="filled small fullwidth">Edit Profile</x-ms-button>
+        <x-ms-button link="profile.edit" type="filled small fullwidth">Edit Profile</x-ms-button>
       </div>
       <div class="@medium:start-2 @medium:end-3">
         <h1 class="supertitle mt-md @medium:mt-xl mb-md">My Documents</h1>
