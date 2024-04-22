@@ -56,6 +56,11 @@ class User extends Authenticatable
     return $this->hasOne(Role::class, 'id', 'role_id');
   }
 
+  public function loadedCourses(): HasMany
+  {
+    return $this->hasMany(Load::class, 'student_id', 'id');
+  }
+
   public function student(): HasOne
   {
     return $this->hasOne(Student::class, 'user_id', 'id');
