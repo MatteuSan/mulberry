@@ -14,19 +14,25 @@ class MSButton extends Component
     public string $link = '',
   ) {}
 
-  private static function isRouteName(string $routeName): bool
+  private function isRouteName(string $routeName): bool
   {
     return Route::getRoutes()->hasNamedRoute($routeName);
   }
 
-  public static function handleLink(string $link, string $fallbackTarget = '_self'): string
+  public function handleLinkTarget(string $link, string $fallbackTarget = '_self'): string
   {
-    if (self::isRouteName($link)) return route($link);
-    $isExternal = (str_contains($link, 'http://') || str_contains($link, 'https://')) && !self::isRouteName($link);
+    if ($this->isRouteName($link)) return route($link);
+    $isExternal = (str_contains($link, 'http://') || str_contains($link, 'https://')) && !$this->isRouteName($link);
     return $isExternal ? '_blank' : $fallbackTarget;
   }
 
-  public static function handleTypes(string $types): string
+  public function handleLink(string $link): string
+  {
+    if($this->isRouteName($link)) return route($link);
+    return $link;
+  }
+
+  public function handleTypes(string $types): string
   {
     $finalTypes = [];
     $types = explode(' ', $types);

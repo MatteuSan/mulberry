@@ -5,7 +5,7 @@
 ])
 
 @if(!empty($link))
-  <a class="ms-button{{ $type ? ' ' . $handleTypes($type) : '' }}" href="{{ $handleLink($link) }}" {{ $attributes }} wire:navigate>
+  <a class="ms-button{{ $type ? ' ' . $handleTypes($type) : '' }}" href="{{ $handleLink($link) }}" target="{{ $handleLinkTarget($link) }}" {{ $attributes }} wire:navigate>
     @if($icon) <i class="ms-button__icon" aria-hidden="true">{{ $icon }}</i> @endif
     <span class="ms-button__label">{{ $slot }}</span>
   </a>
