@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('curricula', function (Blueprint $table) {
             $table->id();
             $table->foreignId('program_id');
-            $table->json('data');
+            $table->foreignId('course_id');
+            $table->integer('year_level');
             $table->timestamps();
         });
     }

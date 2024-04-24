@@ -11,17 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('schedules', function (Blueprint $table) {
+        Schema::create('load_requests', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained()->onDelete('cascade');
-            $table->foreignId('course_id')->constrained();
-            $table->string('timeframe');
-            $table->string('day');
-            $table->string('room');
-            $table->string('building');
-            $table->foreignId('staff_id');
-            $table->foreignId('section_id');
             $table->foreignId('term_id');
+            $table->boolean('is_approved')->default(false);
             $table->timestamps();
         });
     }
@@ -31,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('schedules');
+        Schema::dropIfExists('load_requests');
     }
 };
