@@ -76,6 +76,9 @@
               <x-mu-appbar-dropdown-item route="enrollment.load">
                 My Load
               </x-mu-appbar-dropdown-item>
+              <x-mu-appbar-dropdown-item route="enrollment.load">
+                Payments
+              </x-mu-appbar-dropdown-item>
               <x-mu-appbar-dropdown-item route="enrollment">
                 Request A Course
               </x-mu-appbar-dropdown-item>
