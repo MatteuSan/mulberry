@@ -18,7 +18,7 @@ class CourseFactory extends Factory
     {
         return [
           'name' => $this->faker->company,
-          'slug' => $this->faker->toLower($this->faker->company),
+          'slug' => $this->faker->toUpper($this->faker->randomElement(['css', 'its', 'ged']) . $this->faker->numberBetween(100, 999) . $this->faker->randomElement(['l', ''])),
           'description' => $this->faker->realText(100),
           'units' => $this->faker->numberBetween(1, 3),
         ];
