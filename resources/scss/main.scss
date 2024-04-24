@@ -57,6 +57,14 @@
         600: rgba(#ff9900, 66%),
       )
     ),
+    success: (
+      200: himig.primitive-token-get('ms-green.200'),
+      300: himig.primitive-token-get('ms-green.300'),
+      400: himig.primitive-token-get('ms-green.400'),
+      600: himig.primitive-token-get('ms-green.600'),
+      800: himig.primitive-token-get('ms-green.800'),
+      ink: #fff,
+    )
   )
 ) {
   main.content-wrap {
@@ -299,6 +307,14 @@
   @include ms-utils.struct();
   @include ms-utils.typography();
   @include ms-utils.layout();
+
+  .fill-success-400 {
+    background: himig.token-get('success-400');
+  }
+
+  .ink-success-ink {
+    color: himig.token-get('success-ink');
+  }
 
   @include mu-appbar.render();
   @include mu-header.render();
