@@ -61,8 +61,8 @@
         @endif
       </span>
     </nav>
-    <div class="flex flow-row wrap-none jc-center ai-center mt-md">
+    {{-- <div class="flex flow-row wrap-none jc-center ai-center mt-md">
       <p>Page {{ $paginator->currentPage() }} of {{ $paginator->total() }}</p>
-    </div>
+    </div> --}}
   @endif
 </div>
