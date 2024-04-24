@@ -36,6 +36,14 @@ class DatabaseSeeder extends Seeder
       'permissions' => json_encode(['student']),
     ]);
 
+    // Terms
+    DB::table('terms')->insert([
+      'academic_year' => 2324,
+      'term' => 1,
+      'start_date' => '2024-02-27',
+      'end_date' => '2024-05-13',
+    ]);
+
     // Departments
     DB::table('departments')->insert([
       'title' => 'School of Information Technology',
