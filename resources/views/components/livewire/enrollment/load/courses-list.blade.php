@@ -1,8 +1,8 @@
 <section class="flex flow-column wrap-none gap-md">
   @if($courses->count() > 0)
     <section class="w-full" style="overflow-x: auto">
-      <table class="w-full fill-surface-200 ink-surface-ink">
-        <thead class="fill-surface-600">
+      <table class="w-full fill-primary-300 ink-primary-ink">
+        <thead class="fill-primary-800">
         <tr>
           <th class="py-md px-lg">Course Code</th>
           <th class="py-md px-lg">Course Title</th>

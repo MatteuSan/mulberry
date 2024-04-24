@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Edit Announcement - Admin')
+@section('title', 'Edit '. $announcement->title . ' - Admin')
 
 @section('content')
   <main class="content-wrap">

@@ -71,18 +71,8 @@ class User extends Authenticatable
     return $this->hasOne(Staff::class, 'user_id', 'id');
   }
 
-  public function isStudent(): bool
+  public function hasRole(string $role): bool
   {
-    return $this->role->slug === 'student';
-  }
-
-  public function isStaff(): bool
-  {
-    return $this->role->slug === 'staff';
-  }
-
-  public function isSuperuser(): bool
-  {
-    return $this->role->slug === 'superuser';
+    return $this->role->slug === $role;
   }
 }

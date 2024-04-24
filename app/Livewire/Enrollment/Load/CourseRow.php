@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Enrollment\Load;
 
+use App\Models\Load;
+use App\Models\Section;
 use App\Models\Course;
 use Illuminate\View\View;
 use Livewire\Component;
@@ -9,12 +11,22 @@ use Livewire\Component;
 class CourseRow extends Component
 {
   public Course $course;
+  public bool $isLoaded = false,
+              $isActionDisabled = false,
+              $isSectionDisabled = true,
+              $isSectionVisible = false;
+  public int|null $sectionId, $userId = null;
 
-  public bool $isLoaded = false, $isActionDisabled = false;
+  public function mount(): void
+  {
+    $this->sectionId = $this->userId ? Load::where('student_id', $this->userId)?->where('course_id', $this->course->id)?->first()?->section_id : auth()?->user()?->loadedCourses()?->where('course_id', $this->course->id)?->first()?->section_id;
+  }
 
   public function add(): void
   {
-    auth()->user()->loadedCourses()->create(['course_id' => $this->course->id]);
+    auth()->user()->loadedCourses()->create([
+      'course_id' => $this->course->id,
+    ]);
     $this->dispatch('course-added');
   }
 
@@ -24,8 +36,18 @@ class CourseRow extends Component
     $this->dispatch('course-removed');
   }
 
+  public function updateSection(): void
+  {
+    $load = auth()?->user()?->loadedCourses()?->where('course_id', $this->course->id)?->first();
+    $load->section_id = $this->sectionId;
+    $load->save();
+    $this->dispatch('course-added');
+  }
+
   public function render(): View
   {
-    return view('components.livewire.enrollment.load.course-row');
+    return view('components.livewire.enrollment.load.course-row', [
+      'sections' => Section::all()
+    ]);
   }
 }

@@ -20,13 +20,11 @@ class AppServiceProvider extends ServiceProvider
    */
   public function boot(): void
   {
-    Blade::if('visible', function (string $role) {
-      return match ($role) {
-        'superuser' => auth()->user()->isSuperuser(),
-        'staff' => auth()->user()->isStaff(),
-        'student' => auth()->user()->isStudent(),
-        default => false,
-      };
+    Blade::if('visible', function (string $roles) {
+      $finalChain = [];
+      $roles = explode('|', $roles);
+      foreach ($roles as $role) $finalChain[] = auth()->user()->hasRole($role);
+      return in_array(true, $finalChain, true);
     });
   }
 }

@@ -67,9 +67,14 @@
     )
   )
 ) {
+  body {
+    overflow-x: clip;
+  }
+
   main.content-wrap {
     width: calc(100% - 50px) !important;
     padding-block-end: 7em !important;
+    // overflow-x: clip;
 
     &.is-auth {
       max-width: 670px;

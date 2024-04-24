@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Section;
 use App\Models\Announcement;
 use App\Models\Course;
 use App\Models\Staff;
@@ -177,5 +178,6 @@ class DatabaseSeeder extends Seeder
       ->create();
     // Announcement::factory(7)->create();
     Course::factory(24)->create();
+    Section::factory(10)->create();
   }
 }

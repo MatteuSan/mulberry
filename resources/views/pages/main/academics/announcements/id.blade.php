@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Announcement')
+@section('title', $announcement->title)
 
 @section('content')
   <main class="content-wrap">

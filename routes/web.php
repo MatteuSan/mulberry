@@ -33,6 +33,14 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['staff'])->group(function () {
       Route::get('/announcements', [Admin\AnnouncementController::class, 'render'])->name('admin.announcements');
       Route::get('/announcements/edit/{id}', [Admin\AnnouncementController::class, 'editRender'])->name('admin.announcements.edit');
+
+      Route::get('/enrollment/manage/{id}', function (int $id) {
+        return view('pages.admin.enrollment.id', [
+          'loadRequest' => \App\Models\LoadRequest::where('id', $id)->firstOrFail(),
+          'load' => \App\Models\Course::orderBy('name')->get()
+        ]);
+      })->name('admin.enrollment.manage');
+
     });
     Route::middleware(['admin'])->group(function () {
       Route::get('/manage-users', [Admin\MangeUsersController::class, 'render'])->name('admin.manage-users');
