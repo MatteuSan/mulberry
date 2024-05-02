@@ -4,15 +4,15 @@ An improved web dashboard for Mapuans. Aims to centralize all features previousl
 
 ## Features
 - [x] Sample Student and Faculty authentication.
-- [ ] User management.
-- [ ] Enrollment and load management without the use of online SFA via request queueing.
-- [ ] Schedule management.
+- [x] User management.
+- [x] Enrollment and load management without the use of online SFA via request queueing.
+- [x] Schedule management.
 - [x] Announcements for institution-wide and department-wide concerns.
-- [ ] Support for mobile devices and low internet speeds.
-- [ ] Course and curriculum viewing.
-- [ ] Grades viewing.
-- [ ] Section management.
-- [ ] Profile management.
+- [x] Support for mobile devices and low internet speeds.
+- [x] Course and ~~curriculum~~ viewing.
+- [x] Grades viewing.
+- [x] Section management.
+- [x] Profile management.
 
 ## Pre-requisites
 - Node.js
