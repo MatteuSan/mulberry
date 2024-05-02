@@ -69,6 +69,9 @@
       @visible('student')
         <section id="schedule" class="@large:start-2 @large:end-3">
           <h2 class="title mt-sm mb-md">My Schedule</h2>
+          <section style="max-width: calc(100svw - 50px); overflow-x: auto;">
+            <livewire:academics.schedule.table is-minimized="true" />
+          </section>
         </section>
       @endvisible
     </section>

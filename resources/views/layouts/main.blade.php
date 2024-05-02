@@ -55,10 +55,10 @@
               </x-mu-appbar-dropdown-item>
             @endvisible
             @visible('student')
-              <x-mu-appbar-dropdown-item route="academics.announcements">
+              <x-mu-appbar-dropdown-item route="academics.grades">
                 My Grades
               </x-mu-appbar-dropdown-item>
-              <x-mu-appbar-dropdown-item route="academics.announcements">
+              <x-mu-appbar-dropdown-item route="academics.schedule">
                 My Schedule
               </x-mu-appbar-dropdown-item>
             @endvisible
@@ -144,7 +144,13 @@
         this.open = ! this.open
       }
     }));
-  })
+    Alpine.data('scheduleModal', () => ({
+      open: false,
+      toggle() {
+        this.open = ! this.open
+      }
+    }));
+  });
 </script>
 </body>
 </html>
