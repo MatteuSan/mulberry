@@ -1,5 +1,5 @@
 <section class="mb-md" style="width: 100%; overflow-x: auto">
-  <table class="w-full fill-primary-300 ink-primary-ink">
+  <table class="w-full mu-table">
     <thead class="fill-primary-800">
     <tr>
       <th class="py-md px-lg">Course Code</th>

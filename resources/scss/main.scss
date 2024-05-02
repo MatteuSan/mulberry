@@ -389,6 +389,69 @@
     }
   }
 
+  .mu-table {
+    background: himig.token-get('primary-600');
+    color: himig.token-get('primary-ink');
+    border: none;
+    border-spacing: 0;
+
+    &.is-minimized {
+      max-height: 540px !important;
+
+      td, th {
+        margin: 0 auto;
+      }
+    }
+
+    thead {
+      background: himig.token-get('primary-800');
+    }
+
+    td, th {
+      padding: 0.7rem himig.primitive-token-get('padding.lg');
+      margin: 5% auto;
+
+      &:first-of-type {
+        min-width: 130px;
+      }
+    }
+
+    tbody {
+      tr {
+        background: himig.token-get('primary-600');
+
+        &:nth-child(even) {
+          background: himig.token-get('primary-alpha-400');
+        }
+      }
+    }
+
+    .mu-table__cell {
+      position: relative;
+
+      &:hover {
+        @include himig.key-bind('table-action-display', flex);
+      }
+
+      .mu-table__actions {
+        display: himig.key-create('table-action-display', none);
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: himig.primitive-token-get('gap.sm');
+        position: absolute;
+        inset: 0;
+        background-color: rgba(himig.token-get-raw('accent-400'), 20%);
+        transition: all var(--ms-transition-time) ease-in-out;
+        z-index: 1;
+
+        .ms-button {
+          height: fit-content;
+        }
+      }
+    }
+  }
+
   @keyframes blink {
     0% {
       opacity: 0.7;
