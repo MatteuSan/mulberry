@@ -15,10 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('student_id');
             $table->foreignId('course_id');
-            $table->float('score');
             $table->string('grade');
-            $table->string('completion_grade');
-            $table->foreignId('graded_by')->constrained('staff'); // For tracking purposes
+            $table->string('completion_grade')->nullable();
             $table->timestamps();
         });
     }

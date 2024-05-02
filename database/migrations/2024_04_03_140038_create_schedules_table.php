@@ -17,9 +17,6 @@ return new class extends Migration
             $table->foreignId('course_id')->constrained();
             $table->string('timeframe');
             $table->string('day');
-            $table->string('room');
-            $table->string('building');
-            $table->foreignId('staff_id');
             $table->foreignId('section_id');
             $table->foreignId('term_id');
             $table->timestamps();
