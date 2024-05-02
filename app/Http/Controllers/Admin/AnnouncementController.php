@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class AnnouncementController extends Controller
 {
-  public function editRender($id)
+  public function renderEdit($id)
   {
     return view('pages.admin.announcements.edit', [
       'announcement' => Announcement::where('id', $id)->firstOrFail()
