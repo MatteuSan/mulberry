@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
-  public function login_render()
+  public function render()
   {
     return view('pages.auth.login');
   }
