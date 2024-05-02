@@ -18,10 +18,9 @@ class GradeFactory extends Factory
     {
         return [
           'student_id' => $this->faker->randomDigitNot(0),
-          'course_id' => $this->faker->randomDigitNot(0),
-          'score' => $this->faker->randomFloat(2, 0, 100),
+          'course_id' => $this->faker->numberBetween(1, 24),
           'grade' => $this->faker->randomFloat(min: 1, max: 5),
-          'completion_grade' => $this->faker->randomElement(['P', 'F']),
+          'completion_grade' => $this->faker->randomElement([null, 'P', 'F']),
         ];
     }
 }
