@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Grade;
 use App\Models\Section;
 use App\Models\Announcement;
 use App\Models\Course;
@@ -174,7 +175,11 @@ class DatabaseSeeder extends Seeder
       ->has(Announcement::factory(2), 'announcements')
       ->create();
     User::factory(5)
-      ->has(Student::factory(1), 'student')
+      ->has(
+        Student::factory(1)->has(
+          Grade::factory(5), 'grades'
+        ), 'student'
+      )
       ->create();
     // Announcement::factory(7)->create();
     Course::factory(24)->create();
