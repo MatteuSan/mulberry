@@ -71,6 +71,16 @@ class User extends Authenticatable
     return $this->hasOne(Staff::class, 'user_id', 'id');
   }
 
+  public function schedules(): HasMany
+  {
+    return $this->hasMany(Schedule::class, 'student_id', 'id');
+  }
+
+  public function grades(): HasMany
+  {
+    return $this->hasMany(Grade::class, 'student_id', 'id');
+  }
+
   public function hasRole(string $role): bool
   {
     return $this->role->slug === $role;

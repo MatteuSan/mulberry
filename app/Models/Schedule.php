@@ -9,18 +9,16 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Schedule extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = [
-        'student_id',
-        'course_id',
-        'timeframe',
-        'day',
-        'room',
-        'building',
-        'staff_id',
-        'section_id'
-    ];
+  protected $fillable = [
+    'student_id',
+    'course_id',
+    'timeframe',
+    'day',
+    'section_id',
+    'term_id',
+  ];
 
   public function student(): BelongsTo
   {
