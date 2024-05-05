@@ -8,6 +8,11 @@
   <title>@yield('title') - Mulberry</title>
   <link rel="stylesheet" href="{{ Vite::asset('resources/scss/main.scss') }}">
   <script type="text/javascript" src="{{ Vite::asset('resources/js/app.js') }}" defer></script>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/img/apple-touch-icon.png') }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/img/32x32-icon.png') }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/img/16x16-icon.png') }}">
+
   @livewireStyles
 </head>
 <body>
