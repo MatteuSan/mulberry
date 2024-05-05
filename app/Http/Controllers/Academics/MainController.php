@@ -20,9 +20,9 @@ class MainController extends Controller
     return view('pages.main.academics.index', [
       'announcements' => $announcements,
       'announcements_read' => auth()->user()->readAnnouncements()->get(),
-      'grades' => auth()->user()->grades()->get(),
+      'grades' => auth()->user()->student?->grades()?->get(),
       'gradedCourses' => $gradedCourses,
-      'schedules' => auth()->user()->schedules()->get(),
+      'schedules' => auth()->user()->student?->schedules()?->get(),
     ]);
   }
 }

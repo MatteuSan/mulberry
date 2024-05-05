@@ -34,9 +34,9 @@ class CoursesList extends Component
 
     return view('components.livewire.enrollment.load.courses-list', [
       'courses' => $this->courses,
-      'doesCourseNotExist' => fn (Course $course) => !auth()->user()->loadedCourses()->where('course_id', $course->id)->exists(),
-      'isRequestApproved' => LoadRequest::where('student_id', auth()->id())->first()?->is_approved,
-      'isRequestOpen' => LoadRequest::where('student_id', auth()->id())->exists()
+      'doesCourseNotExist' => fn (Course $course) => !auth()->user()->student->loads()->where('course_id', $course->id)->exists(),
+      'isRequestApproved' => LoadRequest::where('student_id', auth()->user()->student->id)->first()?->is_approved,
+      'isRequestOpen' => LoadRequest::where('student_id', auth()->user()->student->id)->exists()
     ]);
   }
 }

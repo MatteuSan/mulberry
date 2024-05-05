@@ -19,26 +19,28 @@ class CourseRow extends Component
 
   public function mount(): void
   {
-    $this->sectionId = $this->userId ? Load::where('student_id', $this->userId)?->where('course_id', $this->course->id)?->first()?->section_id : auth()?->user()?->loadedCourses()?->where('course_id', $this->course->id)?->first()?->section_id;
+    $this->sectionId = $this->userId ? Load::where('student_id', $this->userId)?->where('course_id', $this->course->id)?->first()?->section_id : auth()->user()->student->loads()->where('course_id', $this->course->id)?->first()?->section_id;
   }
 
   public function add(): void
   {
-    auth()->user()->loadedCourses()->create([
+    Load::create([
+      'student_id' => auth()->user()->student->id,
       'course_id' => $this->course->id,
+      'section_id' => $this->sectionId,
     ]);
     $this->dispatch('course-added');
   }
 
   public function remove(): void
   {
-    auth()->user()->loadedCourses()->where('course_id', $this->course->id)->delete();
+    auth()->user()->student->loads()->where('course_id', $this->course->id)->delete();
     $this->dispatch('course-removed');
   }
 
   public function updateSection(): void
   {
-    $load = auth()?->user()?->loadedCourses()?->where('course_id', $this->course->id)?->first();
+    $load = auth()->user()->student->loads()->where('course_id', $this->course->id)?->first();
     $load->section_id = $this->sectionId;
     $load->save();
     $this->dispatch('course-added');

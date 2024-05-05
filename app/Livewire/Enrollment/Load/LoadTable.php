@@ -16,7 +16,7 @@ class LoadTable extends Component
   public function render(): View
   {
     return view('components.livewire.enrollment.load.load-table', [
-      'doesCourseExistInLoad' => fn (Course $course) => $this->id ? Load::where('course_id', $course->id)->where('student_id', $this->id)->exists() : auth()->user()->loadedCourses()->where('course_id', $course->id)->exists(),
+      'doesCourseExistInLoad' => fn (Course $course) => $this->id ? Load::where('course_id', $course->id)->where('student_id', $this->id)->exists() : auth()->user()->student->loads()->where('course_id', $course->id)->exists(),
     ]);
   }
 }

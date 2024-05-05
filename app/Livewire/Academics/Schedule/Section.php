@@ -17,7 +17,7 @@ class Section extends Component
   #[On('schedule-removed')]
   public function mount(): void
   {
-    $this->schedules = auth()->user()->schedules()->get();
+    $this->schedules = auth()->user()->student->schedules()->get();
   }
 
   public function lockIn(): void
@@ -30,7 +30,7 @@ class Section extends Component
 
   public function render(): View
   {
-    $isLoadApproved = LoadRequest::where('student_id', auth()->id())->where('is_approved', true)->exists();
+    $isLoadApproved = LoadRequest::where('student_id', auth()->user()->student->id)->where('is_approved', true)->exists();
     return view('components.livewire.academics.schedule.section', [
       'schedules' => $this->schedules,
       'isLoadApproved' => $isLoadApproved

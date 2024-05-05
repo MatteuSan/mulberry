@@ -44,12 +44,12 @@ class Form extends Component
 
   private function isColliding(string $day, string $timeframe): bool
   {
-    return auth()->user()->schedules()->where('day', $day)->where('timeframe', $timeframe)->exists();
+    return auth()->user()->student->schedules()->where('day', $day)->where('timeframe', $timeframe)->exists();
   }
 
   public function mount(): void
   {
-    $this->courseId = auth()->user()->loadedCourses()->pluck('course_id')->first();
+    $this->courseId = auth()->user()->student->loads()->pluck('course_id')->first();
     $this->day = $this->days[0];
     $this->timeframe = $this->timeframes[0];
   }
@@ -59,9 +59,9 @@ class Form extends Component
     $this->validate();
 
     Schedule::create([
-      'student_id' => auth()->id(),
+      'student_id' => auth()->user()->student->id,
       'course_id' => $this->courseId,
-      'section_id' => auth()->user()->loadedCourses()->where('course_id', $this->courseId)->firstOrFail()->section_id,
+      'section_id' => auth()->user()->student->loads()->where('course_id', $this->courseId)->firstOrFail()->section_id,
       'day' => $this->day,
       'timeframe' => $this->timeframe,
       'term_id' => 1,
@@ -75,7 +75,7 @@ class Form extends Component
 
   public function render(): View
   {
-    $loadedCourses = auth()->user()->loadedCourses()->pluck('course_id')->toArray();
+    $loadedCourses = auth()->user()->student->loads()->pluck('course_id')->toArray();
     $loads = Course::whereIn('id', $loadedCourses)->get();
     return view('components.livewire.academics.schedule.form', [
       'loads' => $loads,

@@ -25,8 +25,8 @@ class Row extends Component
   #[On('schedule-removed')]
   public function render(): View
   {
-    $doesScheduleExist = auth()->user()->schedules()->where('day', $this->day)->where('timeframe', $this->timeframe)->exists();
-    $schedule = $doesScheduleExist ? auth()->user()->schedules()->where('day', $this->day)->where('timeframe', $this->timeframe)->first() : null;
+    $doesScheduleExist = auth()->user()->student->schedules()->where('day', $this->day)->where('timeframe', $this->timeframe)->exists();
+    $schedule = $doesScheduleExist ? auth()->user()->student->schedules()->where('day', $this->day)->where('timeframe', $this->timeframe)->first() : null;
     $course = $schedule ? Course::where('id', $schedule->course_id)->first()->slug : null;
     $section = $schedule ? Section::where('id', $schedule->section_id)->first()->name : null;
     $id = $schedule ? $schedule->id : null;

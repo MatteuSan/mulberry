@@ -17,7 +17,7 @@ class ScheduleController extends Controller
 
   public function render(): View
   {
-    $isLoadApproved = LoadRequest::where('student_id', auth()->id())->where('is_approved', true)->exists();
+    $isLoadApproved = LoadRequest::where('student_id', auth()->user()->student->id)->where('is_approved', true)->exists();
     return view('pages.main.academics.schedule.index', [
       'isLoadApproved' => $isLoadApproved
     ]);

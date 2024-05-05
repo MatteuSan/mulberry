@@ -23,37 +23,37 @@ class Student extends Model
 
   public function user(): BelongsTo
   {
-    return $this->belongsTo(User::class);
+    return $this->belongsTo(User::class, 'user_id', 'id');
   }
 
   public function grades(): HasMany
   {
-    return $this->hasMany(Grade::class);
+    return $this->hasMany(Grade::class, 'student_id', 'id');
   }
 
   public function loads(): HasMany
   {
-    return $this->hasMany(Load::class);
+    return $this->hasMany(Load::class, 'student_id', 'id');
   }
 
-  public function schedule(): HasMany
+  public function schedules(): HasMany
   {
-    return $this->hasMany(Schedule::class);
+    return $this->hasMany(Schedule::class, 'student_id', 'id');
   }
 
   public function program(): BelongsTo
   {
-    return $this->belongsTo(Program::class);
+    return $this->belongsTo(Program::class, 'program_id', 'id');
   }
 
   public function courses(): HasMany
   {
-    return $this->hasMany(Course::class);
+    return $this->hasMany(Course::class, 'student_id', 'id');
   }
 
   public function loadRequest(): HasOne
   {
-    return $this->hasOne(LoadRequest::class);
+    return $this->hasOne(LoadRequest::class, 'student_id', 'id');
   }
 
   public function takenCourses(): HasMany

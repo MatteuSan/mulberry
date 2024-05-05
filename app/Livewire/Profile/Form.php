@@ -26,18 +26,20 @@ class Form extends Component
 
   public function edit(): void
   {
-    $user = User::find(auth()->user()->id)->firstOrFail();
-    $user->prefix = $this?->prefix;
-    $user->first_name = $this?->firstName;
-    $user->middle_name = $this?->middleName;
-    $user->last_name = $this?->lastName;
-    if ($user->suffix) $user->suffix = $this?->suffix;
+    $user = auth()->user();
+    $user->prefix = $this->prefix;
+    $user->first_name = $this->firstName;
+    $user->middle_name = $this->middleName;
+    $user->last_name = $this->lastName;
+    if ($user->suffix) $user->suffix = $this->suffix;
     $user->save();
     $this->redirect(route('profile'));
   }
 
   public function render(): View
   {
-    return view('components.livewire.profile.form');
+    return view('components.livewire.profile.form', [
+      'user' => auth()->user()
+    ]);
   }
 }
