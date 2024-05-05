@@ -6,6 +6,7 @@ use App\Models\Load;
 use App\Models\Section;
 use App\Models\Course;
 use Illuminate\View\View;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class CourseRow extends Component
@@ -15,11 +16,12 @@ class CourseRow extends Component
               $isActionDisabled = false,
               $isSectionDisabled = true,
               $isSectionVisible = false;
+  #[Validate('nullable')]
   public int|null $sectionId, $userId = null;
 
   public function mount(): void
   {
-    $this->sectionId = $this->userId ? Load::where('student_id', $this->userId)?->where('course_id', $this->course->id)?->first()?->section_id : auth()->user()->student->loads()->where('course_id', $this->course->id)?->first()?->section_id;
+    $this->sectionId = $this->userId ? Load::where('student_id', $this->userId)?->where('course_id', $this->course->id)?->first()?->section_id : auth()->user()->student->loads()->where('course_id', $this->course->id)?->first()?->section_id || null;
   }
 
   public function add(): void
