@@ -20,18 +20,18 @@ class RegisterForm extends Component
   public string $username = '';
 
   #[Validate('string|nullable')]
-  public string|null $prefix;
+  public string|null $prefix = null;
   #[Validate('required|string')]
   public string $firstName = '';
 
   #[Validate('string|nullable')]
-  public string|null $middleName;
+  public string|null $middleName = null;
 
   #[Validate('required|string')]
   public string $lastName = '';
 
   #[Validate('string|nullable')]
-  public string|null $suffix;
+  public string|null $suffix = null;
 
   #[Validate('required|email|unique:users')]
   public string $email = '';
