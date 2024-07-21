@@ -1,0 +1,26 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Mulberry
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Matthew Gabriel
+    family-names: Hernandez
+    email: matt@matteusan.com
+    affiliation: Mapua University
+  - given-names: Ma. Fatima
+    family-names: Mosquito
+    email: mfmosquito@mymail.mapua.edu.ph
+    affiliation: Mapua University
+  - given-names: Alyssa Ashley
+    family-names: Lavandero
+    email: aaplavandero@mymail.mapua.edu.ph
+    affiliation: Mapua University
+repository-code: 'https://github.com/MatteuSan/mulberry'
+abstract: >-
+  Improved Mapua University web dashboard. In fulfillment of
+  requirements for CSS151L and CSS152L. 
