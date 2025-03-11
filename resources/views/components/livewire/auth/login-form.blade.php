@@ -7,7 +7,7 @@
     Remember me
   </label>
   <div class="flex flow-row jc-end gap-sm">
-    <button class="ms-button is-filled is-inverted" type="submit">
+    <button class="ms-button is-filled" type="submit">
       <span class="ms-button__label">Login</span>
     </button>
   </div>

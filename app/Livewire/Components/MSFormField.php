@@ -17,6 +17,6 @@ class MSFormField extends Component
 
   public function render(): View
   {
-    return view('components.livewire.components.ms-form-field');
+    return view('components.livewire.components.ms-form-field', ['type' => 'text']);
   }
 }
