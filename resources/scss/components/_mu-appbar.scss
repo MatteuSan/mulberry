@@ -37,9 +37,9 @@
         &.is-active {
           font-weight: 700;
 
-          @include himig.key-bind('appbar-item-icon-fill', himig.token-get('error-400'));
-          @include himig.key-bind('appbar-item-icon-ink', himig.token-get('accent-400'));
-          @include himig.key-bind('appbar-item-label-ink', himig.token-get('error-400'));
+          @include himig.key-bind('appbar-item-icon-fill', himig.token-get('accent-400'));
+          @include himig.key-bind('appbar-item-icon-ink', himig.token-get('warning-400'));
+          @include himig.key-bind('appbar-item-label-ink', himig.token-get('accent-400'));
           @include himig.key-bind('appbar-item-gap', himig.to-rem(5px));
 
           // @include himig.breakpoint-create('medium') {
@@ -48,7 +48,7 @@
 
           &:hover {
             color: himig.token-get('error-600');
-            @include himig.key-bind('appbar-item-icon-fill', himig.token-get('error-600'));
+            @include himig.key-bind('appbar-item-icon-fill', himig.token-get('accent-600'));
           }
         }
 
