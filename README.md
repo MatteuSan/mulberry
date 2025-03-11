@@ -9,15 +9,15 @@ An improved web dashboard for Mapuans. Aims to centralize all features previousl
 - [x] Schedule management.
 - [x] Announcements for institution-wide and department-wide concerns.
 - [x] Support for mobile devices and low internet speeds.
-- [x] Course and ~~curriculum~~ viewing.
+- [x] Course ~~and curriculum~~ viewing.
 - [x] Grades viewing.
 - [x] Section management.
 - [x] Profile management.
 
 ## Pre-requisites
-- Node.js
+- Node.js (20.x or higher)
 - Composer
-- PHP 8.1 or higher
+- PHP 8.4 or higher
 - SQLite3
 
 ## Development Setup
