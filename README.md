@@ -1,6 +1,6 @@
-# Mulberry
+# SSCS Dashboard
 
-An improved web dashboard for Mapuans. Aims to centralize all features previously found in fragmented portions.
+An improved web dashboard for SSCS. Aims to centralize all features previously found in fragmented portions.
 
 ## Features
 - [x] Sample Student and Faculty authentication.
