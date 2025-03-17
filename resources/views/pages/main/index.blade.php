@@ -13,16 +13,7 @@
         <h2 class="title mt-sm mb-md">Quick Links</h2>
         <ul class="flex flow-row wrap gap-sm" style="list-style: none">
           <li>
-            <a href="https://mapua.blackboard.com" class="ms-button is-outlined is-small" target="_blank">Blackboard</a>
-          </li>
-          <li>
-            <a href="https://mapua.edu.ph" class="ms-button is-outlined is-small" target="_blank">Mapua Website</a>
-          </li>
-          <li>
-            <a href="https://www.mapua.edu.ph/pages/services/students/educational-software" class="ms-button is-outlined is-small" target="_blank">Software</a>
-          </li>
-          <li>
-            <a href="https://library.mapua.edu.ph" class="ms-button is-outlined is-small" target="_blank">Library</a>
+            <a href="#" class="ms-button is-outlined is-small is-inverted">Facebook Page</a>
           </li>
         </ul>
       </section>
@@ -32,7 +23,7 @@
           <section>
             <div class="mu-alert my-sm">
               <p class="mu-alert__label">{{ $announcements_all->count() - $announcements_read->count() }} new {{ $pluralize('announcement', 'announcements', $announcements_all->count() - $announcements_read->count()) }} from the university!</p>
-              <button wire:confirm="Are you sure you want all announcements to be marked as read? (This cannot be undone)" class="ms-button is-small is-error" type="button">Read all</button>
+              <button wire:confirm="Are you sure you want all announcements to be marked as read? (This cannot be undone)" class="ms-button is-small" type="button">Read all</button>
             </div>
             <div class="flex flow-column gap-md mt-md">
               @if($announcements->count() >= 1)

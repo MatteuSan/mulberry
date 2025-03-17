@@ -19,6 +19,7 @@
     "livewire/volt": "^1.6",
     "spiral/roadrunner-cli": "^2.6.0",
     "spiral/roadrunner-http": "^3.3.0",
+    "sqlitecloud/sqlitecloud": "^0.2.0",
     "tempest/highlight": "^1.0"
   },
   "require-dev": {

@@ -7,7 +7,6 @@
           <th class="py-md px-lg">Course Code</th>
           <th class="py-md px-lg">Course Title</th>
           <th class="py-md px-lg">Units</th>
-          @if(!$isRequestOpen) <th class="py-md px-lg">Actions</th> @endif
         </tr>
         </thead>
         <tbody>

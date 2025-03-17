@@ -17,7 +17,6 @@
           <th class="py-md px-lg">Course Title</th>
           <th class="py-md px-lg">Units</th>
           <th class="py-md px-lg">Section</th>
-          @if(!$isRequestOpen) <th class="py-md px-lg">Actions</th> @endif
         </tr>
         </thead>
         <tbody>
@@ -35,19 +34,10 @@
     </div>
   @endif
   <div class="flex flow-row wrap-none jc-end ai-center gap-lg">
-    <p class="flex ai-center">
-      @if($totalLoad() >= 19) <span class="fill-error-400 ink-error-ink px-sm py-sm small mr-sm r-sm"><b>OVERLOAD!</b></span> @endif
-      <span>Total Load: <b>{{ $totalLoad() }} Units</b></span>
-    </p>
     @if(!$isRequestOpen)
       @if($totalLoad() > 0)
         <div class="flex flow-row wrap-none jc-end ai-center gap-sm">
-          <x-ms-button type="filled error" wire:click="clear">Clear</x-ms-button>
-          @if ($totalLoad() >= 19)
-            <x-ms-button type="filled" is-disabled>Submit</x-ms-button>
-          @else
-            <x-ms-button type="filled" wire:click="openRequest">Submit</x-ms-button>
-          @endif
+          <x-ms-button type="filled" wire:click="openRequest">Finalize</x-ms-button>
         </div>
       @endif
     @else

@@ -20,7 +20,7 @@ class LoginForm extends Component
   public function login(): void
   {
     $this->validate();
-    if (!auth()->attempt($this->only('email', 'password'), $this->remember)) back()->with('message', 'Invalid login details.');
+    if (!auth()->attempt($this->only('email', 'password'), $this->remember)) back()->with('message', 'Login failed! Check your user ID and password.');
     redirect()->route('home');
   }
 

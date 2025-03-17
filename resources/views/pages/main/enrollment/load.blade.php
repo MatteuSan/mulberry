@@ -12,7 +12,7 @@
     <h1 class="supertitle mt-md @medium:mt-xl">My Load</h1>
     <livewire:enrollment.load.section />
     @if(!$isRequestApproved)
-      <h2 class="subtitle">Available Courses</h2>
+      <h2 class="subtitle">Remaining Courses</h2>
       <livewire:enrollment.load.courses-list />
     @endif
   </main>
