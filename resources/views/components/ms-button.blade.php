@@ -6,6 +6,8 @@
   'isDisabled' => false,
   'link' => '',
   'linkTarget' => '_self',
+  'cleanedType' => '',
+  'cleanedLink' => '',
 ])
 
 @if(!empty($link))
