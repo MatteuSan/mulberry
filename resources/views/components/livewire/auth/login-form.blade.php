@@ -1,7 +1,7 @@
 <form class="flex flow-column gap-md" wire:submit="login">
   @csrf
-  <x-ms-form-field wire:model.blur="email" name="email" label="Email" required="true" type="email" />
-  <x-ms-form-field wire:model.blur="password" name="password" label="Password" required="true" type="password" />
+  <x-ms-form-field wire:model.blur="email" name="email" label="Email" required="true" :type="'email'" />
+  <x-ms-form-field wire:model.blur="password" name="password" label="Password" required="true" :type="'password'" />
   <label class="flex flow-row wrap-none gap-sm ai-center">
     <input type="checkbox" id="remember" name="remember" wire:model="remember" />
     Remember me
