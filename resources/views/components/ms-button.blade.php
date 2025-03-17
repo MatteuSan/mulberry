@@ -2,7 +2,9 @@
   'type' => '',
   'icon' => null,
   'role' => 'button',
-  'nativeType' => 'button'
+  'nativeType' => 'button',
+  'isDisabled' => false,
+  'link' => '',
 ])
 
 @php
