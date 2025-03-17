@@ -8,21 +8,16 @@
 ])
 
 @php
-  function _isRouteName(string $routeName): bool
-  {
-   return Route::getRoutes()->hasNamedRoute($routeName);
-  }
-
   function handleLinkTarget(string $link, string $fallbackTarget = '_self'): string
   {
-   if (_isRouteName($link)) return route($link);
-   $isExternal = (str_contains($link, 'http://') || str_contains($link, 'https://')) && !_isRouteName($link);
+   if (Route::getRoutes()->hasNamedRoute($link)) return route($link);
+   $isExternal = (str_contains($link, 'http://') || str_contains($link, 'https://')) && !Route::getRoutes()->hasNamedRoute($link);
    return $isExternal ? '_blank' : $fallbackTarget;
   }
 
   function handleLink(string $link): string
   {
-   if(_isRouteName($link)) return route($link);
+   if(Route::getRoutes()->hasNamedRoute($link)) return route($link);
    return $link;
   }
 
