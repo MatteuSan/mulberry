@@ -2,12 +2,12 @@
   'name' => null,
   'rows' => 10,
   'width' => 'w-full',
-  'type' => 'text',
-  'label' => '',
-  'helper' => '',
-  'required' => false,
-  'disabled' => false,
-  'value' => ''
+  'type',
+  'label',
+  'helper',
+  'required',
+  'disabled',
+  'value'
 ])
 
 <span class="block {{ $width }}">
