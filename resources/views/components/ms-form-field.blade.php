@@ -2,6 +2,7 @@
   'name' => null,
   'rows' => 10,
   'width' => 'w-full',
+  'type' => 'text'
 ])
 
 <span class="block {{ $width }}">
