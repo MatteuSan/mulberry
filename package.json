@@ -11,7 +11,7 @@
         "@matteusan/sentro": "^0.1.25",
         "axios": "^1.8.2",
         "laravel-vite-plugin": "^1.2.0",
-        "sass": "^1.85.1",
+        "sass": "^1.71.0",
         "vite": "^6.0.9"
     },
     "dependencies": {

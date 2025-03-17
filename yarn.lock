@@ -1681,7 +1681,7 @@ __metadata:
     axios: ^1.8.2
     laravel-vite-plugin: ^1.2.0
     lodash: ^4.17.21
-    sass: ^1.85.1
+    sass: ^1.71.0
     vite: ^6.0.9
   languageName: unknown
   linkType: soft
@@ -1693,7 +1693,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.85.1":
+"sass@npm:^1.71.0":
   version: 1.85.1
   resolution: "sass@npm:1.85.1"
   dependencies:
