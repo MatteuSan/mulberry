@@ -21,6 +21,10 @@ class MUAppbarItem extends Component
 
   public function render(): View|Closure|string
   {
-    return view('components.mu-appbar-item');
+    return view('components.mu-appbar-item', [
+      'rn' => $this->rn($this->route),
+      'route' => $this->route,
+      'icon' => '',
+    ]);
   }
 }
