@@ -1,5 +1,11 @@
+@props(['route', 'icon', 'dropdown'])
+
+@php
+ $isActive = Route::currentRouteName() == $route;
+@endphp
+
 <li
-  class="mu-appbar-item{{ rn($route) ? ' is-active' : '' }} relative"
+  class="mu-appbar-item{{ $isActive ? ' is-active' : '' }} relative"
   x-data="{ isDropdownVisible: false }"
   @mouseenter="isDropdownVisible = true"
   @mouseleave="isDropdownVisible = false"
