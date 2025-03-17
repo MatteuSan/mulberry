@@ -9,7 +9,7 @@
     <x-ms-form-field wire:model="suffix" name="suffix" type="text" value="{{ $user->suffix }}" label="Suffix" />
 
     <div class="flex flow-row wrap-none gap-sm jc-end ai-center">
-      <x-ms-button link="profile" type="outlined error" wire:click.prevent>Cancel</x-ms-button>
+      <x-ms-button link="/profile" type="outlined error" wire:click.prevent>Cancel</x-ms-button>
       <x-ms-button type="filled" native="submit">Save</x-ms-button>
     </div>
   </form>
