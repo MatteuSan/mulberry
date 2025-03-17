@@ -7,6 +7,7 @@
   'helper' => '',
   'required' => false,
   'disabled' => false,
+  'value' => ''
 ])
 
 <span class="block {{ $width }}">
