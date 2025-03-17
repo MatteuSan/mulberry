@@ -20,7 +20,7 @@
 
   function handleLink(string $link): string
   {
-   if(isRouteName($link)) return route($link);
+   if(_isRouteName($link)) return route($link);
    return $link;
   }
 
