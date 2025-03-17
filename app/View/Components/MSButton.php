@@ -10,9 +10,9 @@ use Illuminate\View\View;
 class MSButton extends Component
 {
   public function __construct(
-    public string $type = '',
-    public string $link = '',
-    public string $nativeType = '',
+    public string|null $type = '',
+    public string|null $link = '',
+    public string|null $nativeType = '',
     public bool $isDisabled = false
   ) {}
 
