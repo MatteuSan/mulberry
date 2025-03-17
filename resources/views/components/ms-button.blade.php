@@ -1,7 +1,8 @@
 @props([
   'type' => '',
   'icon' => null,
-  'role' => 'button'
+  'role' => 'button',
+  'nativeType'
 ])
 
 @php
