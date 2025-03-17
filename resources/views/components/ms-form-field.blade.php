@@ -2,7 +2,7 @@
   'name' => null,
   'rows' => 10,
   'width' => 'w-full',
-  'type',
+  'type' => 'text',
   'label',
   'helper',
   'required',
