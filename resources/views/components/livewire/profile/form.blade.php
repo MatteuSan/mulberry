@@ -1,6 +1,7 @@
 <div class="w-full fill-surface-200 ink-surface-ink p-lg @medium:p-xl r-lg my-xl">
   <h2 class="title mb-md">Edit profile</h2>
   <form class="flex flow-column gap-md" wire:submit="edit">
+    @csrf
     <x-ms-form-field wire:model="prefix" name="prefix" type="text" value="{{ $user->prefix }}" label="Prefix" />
     <x-ms-form-field wire:model="firstName" name="first-name" type="text" value="{{ $user->first_name }}" label="First Name" />
     <x-ms-form-field wire:model="middleName" name="middle-name" type="text" value="{{ $user->middle_name }}" label="Middle Name (if applicable)" />

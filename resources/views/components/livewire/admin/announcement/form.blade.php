@@ -1,6 +1,7 @@
 <section class="w-full fill-surface-200 ink-surface-ink p-lg @medium:p-xl r-lg my-xl" x-data="{ content: '' }">
   <h2 class="title mb-md">Create announcement</h2>
   <form class="flex flow-column gap-md" wire:submit="createAnnouncement">
+    @csrf
     <x-ms-form-field
       name="title"
       label="Title"
