@@ -7,7 +7,7 @@
   'helper',
   'required',
   'disabled',
-  'value'
+  'value' => ''
 ])
 
 <span class="block {{ $width }}">
