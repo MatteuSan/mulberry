@@ -16,5 +16,10 @@
     },
     "dependencies": {
         "lodash": "^4.17.21"
+    },
+    "overrides": {
+        "overrides": {
+            "rollup": "npm:@rollup/wasm-node"
+        }
     }
 }
