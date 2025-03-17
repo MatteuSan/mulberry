@@ -41,8 +41,8 @@ class MSButton extends Component
   {
     return view('components.ms-button', [
       'linkTarget' => $this->handleLinkTarget(),
-      'link' => $this->handleLink(),
-      'type' => $this->handleTypes(),
+      'cleanedLink' => $this->handleLink(),
+      'cleanedType' => $this->handleTypes(),
     ]);
   }
 }
