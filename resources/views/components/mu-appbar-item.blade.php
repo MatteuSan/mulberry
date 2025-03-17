@@ -1,5 +1,5 @@
 <li
-  class="mu-appbar-item{{ $rn ? ' is-active' : '' }} relative"
+  class="mu-appbar-item{{ rn($route) ? ' is-active' : '' }} relative"
   x-data="{ isDropdownVisible: false }"
   @mouseenter="isDropdownVisible = true"
   @mouseleave="isDropdownVisible = false"
